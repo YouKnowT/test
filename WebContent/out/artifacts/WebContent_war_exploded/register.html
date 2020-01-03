@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+    <title> - 学生竞赛系统注册</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/font-awesome.css?v=4.4.0" rel="stylesheet">
+    <link href="css/animate.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/login.css" rel="stylesheet">
+    <!--[if lt IE 9]>
+    <meta http-equiv="refresh" content="0;ie.html" />
+    <![endif]-->
+    <script>
+        if (window.top !== window.self) {
+            window.top.location = window.location;
+        }
+    </script>
+
+</head>
+
+<body class="signin">
+    <div class="signinpanel">
+        <div class="row">
+            <div class="col-sm-12">
+                <form method="post" action="UserInfoServlet?opr=adduser"> 
+                    <p class="m-t-md" align="center">用户注册</p>
+                    <input name="user_account" type="text" class="form-control uname" required="required"  pattern="^\d+$" title="请输入数字" placeholder="请输入学号" />
+                    <input name="user_name" type="text" class="form-control uname" required="required" placeholder="姓名" />
+                    <input id="first_password" name="user_pwd" type="password" class="form-control pword m-b" required="required" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).*$" title="请输入至少包含一个大写字母，一个小写字母和一个数字" placeholder="密码" />
+                    <input type="radio" id="teacher"  name="xxx"/>教师注册     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;<input type="radio" id="student" name="xxx"/>学生注册
+                    
+                    <button class="btn btn-success btn-block" type="submit" οnclick="login.html">注册</button>
+                    
+                </form>
+            </div>
+        </div>
+        <div class="signup-footer">
+            <div class="pull-left">
+                &copy; 学生竞赛系统
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
