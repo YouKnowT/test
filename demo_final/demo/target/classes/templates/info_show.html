@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+<title>- 基础表格</title>
+<meta name="keywords" content="">
+<meta name="description" content="">
+
+<link rel="shortcut icon" href="favicon.ico">
+<link href="http://localhost:8881/homework/css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
+<link href="http://localhost:8881/homework/css/font-awesome.css?v=4.4.0" rel="stylesheet">
+<link href="http://localhost:8881/homework/css/plugins/iCheck/custom.css" rel="stylesheet">
+<link href="http://localhost:8881/homework/css/animate.css" rel="stylesheet">
+<link href="http://localhost:8881/homework/css/style.css?v=4.1.0" rel="stylesheet">
+
+</head>
+<style>
+        th{
+            width: 8px;
+        }
+    </style>
+
+<body class="gray-bg">
+	<div class="wrapper wrapper-content animated fadeInRight">
+
+		<div class="row">
+			<div class="col-sm-12">
+				<div class="ibox float-e-margins">
+					<div class="ibox-title">
+						<h5>查看比赛信息</h5>
+
+					</div>
+					<div class="ibox-content">
+
+						<div class="table-responsive">
+							<table class="table table-striped">
+								<thead>
+									<tr>
+										<th>所属班级</th>
+										<th>学生姓名</th>
+										<th>学号</th> 
+										<th>指导教师</th> 
+										<th>比赛名称</th>
+										<th>比赛类别</th>
+										<th>比赛等级</th>
+										<th>竞赛证书</th>
+										<th>指导证书</th>
+										<th>比赛照片</th>
+									</tr>
+									
+								</thead>
+								<tbody>
+
+										<tr th:each="mapS:${competitions}">
+										<td th:text="${mapS.student_class}"></td>
+										<td th:text="${mapS.student_name}"></td>
+
+										<td th:text="${mapS.getStudent_count()}"></td>
+										<td th:text="${mapS.student_guide}"></td>
+										<td th:text="${mapS.competition_name}"></td>
+										<td th:text="${mapS.category}"></td>
+										<td th:text="${mapS.item}"></td>
+											<td></td>
+											<td></td>
+											<td></td>
+
+
+									</tr>
+								</tbody>
+
+
+							</table>
+						</div>
+						
+
+					</div>
+				</div>
+				<div class="col-sm-12">
+								
+								
+							</div>
+			</div>
+
+		</div>
+	</div>
+	<!-- 全局js -->
+	<script src="http://localhost:8881/homework/js/jquery.min.js?v=2.1.4"></script>
+	<script src="http://localhost:8881/homework/js/bootstrap.min.js?v=3.3.6"></script>
+
+
+
+	<!-- Peity -->
+	<script src="http://localhost:8881/homework/js/plugins/peity/jquery.peity.min.js"></script>
+
+	<!-- 自定义js -->
+	<script src="http://localhost:8881/homework/js/content.js?v=1.0.0"></script>
+
+
+	<!-- iCheck -->
+	<script src="http://localhost:8881/homework/js/plugins/iCheck/icheck.min.js"></script>
+
+	<!-- Peity -->
+	<script src="http://localhost:8881/homework/js/demo/peity-demo.js"></script>
+
+
+
+
+
+
+</body>
+
+</html>

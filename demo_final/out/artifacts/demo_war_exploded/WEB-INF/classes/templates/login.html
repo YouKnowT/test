@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+    <title> - 学生竞赛系统</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <link href="http://localhost:8881/homework/css/bootstrap.min.css" rel="stylesheet">
+    <link href="http://localhost:8881/homework/css/font-awesome.css?v=4.4.0" rel="stylesheet">
+    <link href="http://localhost:8881/homework/css/animate.css" rel="stylesheet">
+    <link href="http://localhost:8881/homework/css/style.css" rel="stylesheet">
+    <link href="http://localhost:8881/homework/css/login.css" rel="stylesheet">
+    <!--[if lt IE 9]>
+    <meta http-equiv="refresh" content="0;ie.html" />
+    <![endif]-->
+    <script>
+        if (window.top !== window.self) {
+            window.top.location = window.location;
+        }
+    </script>
+
+</head>
+
+<body class="signin">
+    <div class="signinpanel">
+        <div class="row">
+            <div class="col-sm-12">
+                <form method="post" action="/homework/user/login">
+                    <p class="m-t-md" align="center">系统登录</p>
+                    <input name="user_name" type="text" class="form-control uname" required="required" placeholder="学号" />
+                    <input name="user_pwd" type="password" class="form-control pword m-b" required="required" placeholder="密码" />
+                    <input type="radio" id="teacher"  name="RadioGroup" value="0"/>教师端     &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;
+                    <input type="radio" id="student" name="RadioGroup" value="1"/>学生端&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <input type="radio" id="admin"  name="RadioGroup" value="2"/>管理员
+                    <script type="text/javascript">
+                    // if(id=='teacher'){   //注意判断身份中用单引号
+                    //
+                    // 	loginform.action="/CurriculumEvaluationWeb/WebContent/index_teacher.jsp";     //注意这块的路径是绝对路径
+                    //
+                    // 	loginform.submit();//表单进行提交，结果就跳转到相应的action对应的页面中
+                    //
+                    // 	}
+                    // if(id=='student'){   //注意判断身份中用单引号
+                    //
+                    // 	loginform.action="/CurriculumEvaluationWeb/WebContent/info_show.html";     //注意这块的路径是绝对路径
+                    //
+                    // 	loginform.submit();//表单进行提交，结果就跳转到相应的action对应的页面中
+                    //
+                    // 	}
+                    // else{   //注意判断身份中用单引号
+                    //
+                    // 	loginform.action="/CurriculumEvaluationWeb/WebContent/index_admin.html";     //注意这块的路径是绝对路径
+                    //
+                    // 	loginform.submit();//表单进行提交，结果就跳转到相应的action对应的页面中
+                    //
+                    // 	}
+    </script>
+                    <button class="btn btn-success btn-block" type="submit">登录</button>
+                    <a href="/homework/user/toRegister"><button class="btn btn-success btn-block" type="button" >注册</button></a>
+
+                </form>
+            </div>
+        </div>
+        <div class="signup-footer">
+            <div class="pull-left">
+                &copy; 学生竞赛系统
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+    	function register(){
+   		 window.location.href="http://localhost:8881/homework/user/toRegister";
+    	}
+    </script>
+</body>
+
+</html>
