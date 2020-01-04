@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import com.example.demo.entity.Admin;
 import com.example.demo.entity.Student;
 import com.example.demo.entity.Teacher;
 import com.example.demo.service.AdminService;
@@ -112,21 +113,23 @@ public class UserController {
             }
         } else {
             System.out.println("管理员登录！");
-//            Admin admin = new Admin();
-//            admin.setName(user_account);
-//            Admin admin1 = adminService.findByName(admin.getName());
-//            admin.setPassword(EncodingHelper.encode(user_pwd));
-//            if (admin1 != null) {
-                if ("Qw1".equals(user_pwd) && "123".equals(user_account)) {
-                    return new ModelAndView("index_admin.html");
+            Admin admin = new Admin();
+            admin.setName(user_account);
+            Admin admin1 = adminService.findByName(admin.getName());
+            admin.setPassword(EncodingHelper.encode(user_pwd));
+            if (admin1 != null) {
+                if (admin.getPassword().equals(EncodingHelper.encode(user_pwd))) {
+                    return new ModelAndView("redirect:/admin/index");
 
 //                    return new ModelAndView("redirect:/user/toLogin");
                 }
 //            }
+            }
         }
         System.out.println("登录失败！");
         return new ModelAndView("redirect:/user/toLogin");
     }
+
 }
 
 //            if (admin1 != null) {

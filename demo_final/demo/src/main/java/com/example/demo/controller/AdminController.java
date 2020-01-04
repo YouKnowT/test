@@ -7,25 +7,23 @@ import com.example.demo.service.AdminService;
 import com.example.demo.service.CompetitionService;
 import com.example.demo.service.StudentService;
 import com.example.demo.service.TeacherService;
-import com.example.demo.util.EncodingHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.persistence.Table;
 import javax.servlet.http.HttpServletRequest;
-import java.util.HashMap;
-import java.util.Map;
 
 //import org.springframework.beans.factory.annotation.Autowired;
 
 @Controller
 @RequestMapping("/admin")
 public class AdminController {
+
     @Autowired
     private AdminService adminService;
     @Autowired
@@ -36,17 +34,20 @@ public class AdminController {
     private TeacherService teacherService;
 
     @RequestMapping("index")
-    @ResponseBody
-    public ModelAndView toIndex(){
-        ModelAndView mav = new ModelAndView("index_admin_v1.html");
-        return  mav;
+    public String toIndex(){
+        return  "admin/adminIndex";
+    }
+
+    @GetMapping("/teacherManage")
+    public String teacherManage(ModelMap modelMap) {
+//        modelMap.addAllAttributes("teachers")
+        return "admin/teacherManage";
     }
 
     @RequestMapping("findById")
     @ResponseBody
     public Admin findById(@RequestParam("id") long id){
         Admin admin = null;
-
         admin = adminService.findById(id);
 
         return admin;
@@ -54,7 +55,7 @@ public class AdminController {
     @RequestMapping("findCompetition")
     @ResponseBody
     public Competition findCompetition(HttpServletRequest request){
-        
+        return null;
     }
 
 
