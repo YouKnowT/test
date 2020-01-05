@@ -6,20 +6,31 @@ import com.example.demo.service.TeacherService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service("teacherService")
 public class TeacherServiceImp implements TeacherService {
     @Autowired
     TeacherDao teacherDao;
 //
-//    @Override
-//    public Teacher findById(long id){
-//
-//        return teacherDao.findById(id);
-//    }
+    @Override
+    public Teacher findById(long id){
+        return teacherDao.findById(id);
+    }
 
     @Override
     public Teacher findByUserAccount(long userAccount) {
         return teacherDao.findByUserAccount(userAccount);
+    }
+
+    @Override
+    public List<Teacher> findAllByAudit(Boolean audit) {
+        return teacherDao.findAllByAudit(audit);
+    }
+
+    @Override
+    public List<Teacher> findAll() {
+        return teacherDao.findAll();
     }
 
     //    @Override
@@ -30,6 +41,7 @@ public class TeacherServiceImp implements TeacherService {
     public Teacher registerTeacher(Teacher teacher) {
         return teacherDao.save(teacher);
     }
+
 //
 //    @Override
 //    public void updateTeacher(Teacher teacher) {

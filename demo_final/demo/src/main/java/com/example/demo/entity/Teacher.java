@@ -1,11 +1,13 @@
 package com.example.demo.entity;
 
+import com.sun.org.apache.xpath.internal.operations.Bool;
 import lombok.Builder;
 import lombok.Data;
 import org.hibernate.annotations.ColumnDefault;
 import org.springframework.boot.context.properties.bind.DefaultValue;
 
 import javax.persistence.*;
+import java.util.Date;
 import java.util.Set;
 
 @Entity
@@ -24,10 +26,16 @@ public class Teacher {
     private String password;
 
     @Column(name = "is_audit")
-    private Boolean isAudit;
+    private Boolean audit;
 
     @Column(name = "name")
     private String name;
+
+    @Column(name = "create_time")
+    private Date createTime;
+
+    @Column(name = "update_time")
+    private Date updateTime;
 
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "com_id")
@@ -39,8 +47,10 @@ public class Teacher {
                 "id=" + id +
                 ", userAccount=" + userAccount +
                 ", password='" + password + '\'' +
-                ", isAudit=" + isAudit +
+                ", audit=" + audit +
                 ", name='" + name + '\'' +
+                ", createTime=" + createTime +
+                ", updateTime=" + updateTime +
                 ", competitions=" + competitions +
                 '}';
     }
@@ -70,11 +80,11 @@ public class Teacher {
     }
 
     public Boolean getAudit() {
-        return isAudit;
+        return audit;
     }
 
     public void setAudit(Boolean audit) {
-        isAudit = audit;
+        audit = audit;
     }
 
     public String getName() {
@@ -92,4 +102,21 @@ public class Teacher {
     public void setCompetitions(Set<Competition> competitions) {
         this.competitions = competitions;
     }
+
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
+
+    public Date getUpdateTime() {
+        return updateTime;
+    }
+
+    public void setUpdateTime(Date updateTime) {
+        this.updateTime = updateTime;
+    }
+
 }

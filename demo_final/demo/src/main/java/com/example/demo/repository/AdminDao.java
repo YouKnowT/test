@@ -14,4 +14,5 @@ public interface AdminDao extends JpaRepository<Admin,Long> {
     Admin findByName(String name);
 
 
+
 }

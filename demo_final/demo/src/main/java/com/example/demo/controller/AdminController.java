@@ -1,8 +1,10 @@
 package com.example.demo.controller;
 
 
+import ch.qos.logback.core.encoder.EchoEncoder;
 import com.example.demo.entity.Admin;
 import com.example.demo.entity.Competition;
+import com.example.demo.entity.Teacher;
 import com.example.demo.service.AdminService;
 import com.example.demo.service.CompetitionService;
 import com.example.demo.service.StudentService;
@@ -10,49 +12,72 @@ import com.example.demo.service.TeacherService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 //import org.springframework.beans.factory.annotation.Autowired;
 
 @Controller
 @RequestMapping("/admin")
 public class AdminController {
+
+    @Autowired
+    private AdminService adminService;
+    @Autowired
+    private CompetitionService competitionService;
+    @Autowired
+    private StudentService studentService;
+    @Autowired
+    private TeacherService teacherService;
+
+    @RequestMapping("index")
+    public String toIndex(){
+        return  "admin/adminIndex";
+    }
+
+    @GetMapping("/teacherManage")
+    public String teacherManage(ModelMap modelMap) {
+        List<Teacher> teachers = teacherService.findAll();
+        modelMap.addAttribute("teachers", teachers);
+        return "admin/teacherManage";
+    }
+
+    @GetMapping("/teacherAudit")
+    public String teacherAudit(ModelMap modelMap) {
+        try {
+            List<Teacher> teacherList = teacherService.findAllByAudit(true);
+            List<Teacher> teacherList1 = teacherService.findAllByAudit(false);
+            modelMap.addAttribute("auditTeachers", teacherList);
+            modelMap.addAttribute("unAuditTeachers", teacherList1);
+            return "admin/teacherAudit";
+        } catch (Exception e) {
+            System.out.println("获取审核教师数据失败" + e);
+            return "admin/teacherAudit";
+        }
+    }
+
+    @GetMapping("/teacher/{id}")
+    public String updateTeacher(@PathVariable("id") Long id) {
+        try {
+           if (null != id) {
+                teacherService.findById(id);
+            }
+        } catch (Exception e) {
+            System.out.println("获取教师数据失败" + e);
+        }
+        return "redirect:/admin/teacherAudit";
+    }
 //
-//    @Autowired
-//    private AdminService adminService;
-//    @Autowired
-//    private CompetitionService competitionService;
-//    @Autowired
-//    private StudentService studentService;
-//    @Autowired
-//    private TeacherService teacherService;
-//
-//    @RequestMapping("index")
-//    public String toIndex(){
-//        return  "admin/adminIndex";
-//    }
-//
-//    @GetMapping("/teacherManage")
-//    public String teacherManage(ModelMap modelMap) {
-////        modelMap.addAllAttributes("teachers")
-//        return "admin/teacherManage";
-//    }
-//
-//    @GetMapping("/teacherAudit")
-//    public String teacherAudit(ModelMap modelMap) {
-//        return "admin/teacherAudit";
-//    }
-//
-//    @GetMapping("/teacherInfo")
-//    public String teacherInfo(ModelMap modelMap) {
-//        return "admin/teacherInfo";
-//    }
+    @GetMapping("/teacherInfo")
+    public String teacherInfo(ModelMap modelMap) {
+        return "admin/teacherInfo";
+    }
 //
 //    @RequestMapping("findById")
 //    @ResponseBody

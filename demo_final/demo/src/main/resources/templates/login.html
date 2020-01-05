@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="utf-8">
@@ -28,7 +28,7 @@
     <div class="signinpanel">
         <div class="row">
             <div class="col-sm-12">
-                <form method="post" action="/homework/user/login">
+                <form method="post" action="/login" th:action="@{/user/login}" >
                     <p class="m-t-md" align="center">系统登录</p>
                     <input name="user_account" type="text" class="form-control uname" required="required" placeholder="学号" />
                     <input name="user_pwd" type="password" class="form-control pword m-b" required="required" placeholder="密码" />
@@ -59,7 +59,7 @@
                     // 	}
     </script>
                     <button class="btn btn-success btn-block" type="submit">登录</button>
-                    <a href="/homework/user/toRegister"><button class="btn btn-success btn-block" type="button" >注册</button></a>
+                    <a href="/user/toRegister"><button class="btn btn-success btn-block" type="button" >注册</button></a>
 
                 </form>
             </div>

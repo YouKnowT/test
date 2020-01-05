@@ -26,29 +26,32 @@
     <div class="row">
         <div th:replace="commons/bar :: sidebar(activeUrl='teacherManage')"></div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-            <h1 class="page-header">教师管理</h1>
+            <h1 class="page-header">教师信息管理</h1>
 
             <!--<h2 class="sub-header">Section title</h2>-->
             <div class="table-responsive">
                 <table class="table table-striped">
                     <thead>
                     <tr>
-                        <th>#</th>
-                        <th>Header</th>
-                        <th>Header</th>
-                        <th>Header</th>
-                        <th>Header</th>
+                        <th>序号</th>
+                        <th>账号</th>
+                        <th>姓名</th>
+                        <th>状态</th>
+                        <th>申请时间</th>
+                        <th>操作</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td>1,001</td>
-                        <td>Lorem</td>
-                        <td>ipsum</td>
-                        <td>dolor</td>
-                        <td>sit</td>
+                    <tr th:each="teacher, iterStat : ${teachers}">
+                        <td th:text="${iterStat.index + 1}">1,001</td>
+                        <td th:text="${teacher.userAccount}"></td>
+                        <td th:text="${teacher.name}">teacher.name</td>
+                        <td th:text="${teacher.audit == false ? '待审核': _}">teacher.audit</td>
+                        <td th:text="${teacher.createTime}">teacher.createTime</td>
+                        <td>
+                            <a th:href="@{/admin/editTeacher/} + ${teacher.id}" class="btn btn-info audit" >编辑</a>
+                        </td>
                     </tr>
-
                     </tbody>
                 </table>
             </div>

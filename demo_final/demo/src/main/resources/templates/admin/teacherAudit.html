@@ -18,7 +18,22 @@
     <!-- Custom styles for this template -->
     <link href="css/dashboard.css" th:href="@{/css/dashboard.css}" rel="stylesheet">
     <link rel="stylesheet" href="css/diy-style.css" th:href="@{/css/diy-style.css}">
+    <style>
+        .table_switch {
+            display: none;
+        }
+        .panel_css {
+            position: absolute;
+            left: 35%;
+            top: 30%;
+            width: 30%;
+            height: 100px;
+        }
+        .panel_show {
+            display: none;
+        }
 
+    </style>
 </head>
 
 <body>
@@ -28,27 +43,59 @@
     <div class="row">
         <div th:replace="commons/bar :: sidebar(activeUrl='teacherAudit',isTmChild='true')"></div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-            <h1 class="page-header">教师信息审核</h1>
+            <h1 class="page-header">教师信息管理</h1>
 
-            <!--<h2 class="sub-header">教师信息</h2>-->
-            <div class="table-responsive">
+            <div class="btn-group" role="group" aria-label="...">
+                <button type="button" class="btn btn-success btn-lg" id="unAuditBtn">待审核</button>
+                <button type="button" class="btn btn-info btn-lg" id="auditBtn">已审核</button>
+
+            </div>
+            <!--待审核教师-->
+            <div id="table_unAudit" class="table-responsive">
                 <table class="table table-striped">
                     <thead>
                     <tr>
-                        <th>#</th>
-                        <th>Header</th>
-                        <th>Header</th>
-                        <th>Header</th>
-                        <th>Header</th>
+                        <th>序号</th>
+                        <th>账号</th>
+                        <th>姓名</th>
+                        <th>状态</th>
+                        <th>申请时间</th>
+                        <th>操作</th>
                     </tr>
                     </thead>
                     <tbody>
+                    <tr th:each="teacher, iterStat : ${unAuditTeachers}">
+                        <td th:text="${iterStat.index + 1}">1,001</td>
+                        <td th:text="${teacher.userAccount}"></td>
+                        <td th:text="${teacher.name}">teacher.name</td>
+                        <td th:text="${teacher.audit == false ? '待审核': _}">teacher.audit</td>
+                        <td th:text="${teacher.createTime}">teacher.createTime</td>
+                        <td><a th:href="@{/admin/updateTeacherAudit/} + ${teacher.id}" class="btn btn-info audit" >审核通过</a></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!--已审核教师-->
+            <div id="table_audit"  class="table-responsive table_switch">
+                <table class="table table-striped">
+                    <thead>
                     <tr>
-                        <td>1,001</td>
-                        <td>Lorem</td>
-                        <td>ipsum</td>
-                        <td>dolor</td>
-                        <td>sit</td>
+                        <th>序号</th>
+                        <th>账号</th>
+                        <th>姓名</th>
+                        <th>状态</th>
+                        <th>申请时间</th>
+
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="teacher, iterStat : ${auditTeachers}">
+                        <td th:text="${iterStat.index + 1}">1,001</td>
+                        <td th:text="${teacher.userAccount}"></td>
+                        <td th:text="${teacher.name}">teacher.name</td>
+                        <td th:text="${teacher.audit == true ? '已审核': _}">teacher.audit</td>
+                        <td th:text="${teacher.createTime}">teacher.createTime</td>
                     </tr>
 
                     </tbody>
@@ -56,7 +103,24 @@
             </div>
         </div>
     </div>
+    <div class="panel_css panel_show">
+        <div class="panel panel-primary ">
+            <div class="panel-heading">教师审核</div>
+            <div class="panel-body" style="height: 200px;">
+                <em> 审核通过后，该教师账号就可以登录系统！！！</em>
+            </div>
+            <div class="panel-footer">
+                <div style="margin-left: 70%;">
+                    <a type="button" class="btn btn-success panel_btn">审核通过</a>
+                    <button type="button" class="btn btn-info panel_btn" >取消</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
 </div>
+
 
 <!-- Bootstrap core JavaScript
 ================================================== -->
@@ -67,6 +131,31 @@
 <!-- Just to make our placeholder images work. Don't actually copy the next line! -->
 <script src="js/holder.min.js" th:src="@{/js/holder.min.js}"></script>
 
+<script>
+    $(document).ready(function () {
+       //  // 面板显示方法
+       // $(".audit").click(function () {
+       //     $('.panel_css').removeClass('panel_show');
+       // });
+
+       // 审核显示切换
+       $("#unAuditBtn").click(function () {
+           $("#table_unAudit").removeClass("table_switch");
+           $("#table_audit").addClass("table_switch");
+       });
+       $("#auditBtn").click(function () {
+           $("#table_audit").removeClass("table_switch");
+           $("#table_unAudit").addClass("table_switch");
+       });
+
+       // 面板按钮方法
+        $('.panel_btn').click(function () {
+            $('.panel_css').addClass("panel_show");
+        });
+
+    });
+
+</script>
 
 </body>
 </html>
