@@ -37,14 +37,34 @@
         <li th:class="${activeUrl=='adminIndex'? 'active': _}">
             <a href="#" th:href="@{/admin/index}"><span class="glyphicon glyphicon-home"></span>&nbsp;&nbsp; 数据</a>
         </li>
+    </ul>
+
+    <ul class="nav nav-sidebar">
         <li th:class="${activeUrl=='teacherManage'? 'active': _}">
-            <a href="#" th:href="@{/admin/teacherManage}"><span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp; 教师信息管理</a>
+            <a href="#" th:href="@{/admin/teacherManage}">
+                <span class="glyphicon glyphicon-user"></span>
+                &nbsp;&nbsp; 教师管理
+                <span class="caret"></span>
+            </a>
         </li>
+        <li class="diy-menu" th:if="${activeUrl=='teacherManage' || isTmChild == 'true'}" th:class="${activeUrl=='teacherAudit'? 'diy-menu active': 'diy-menu'}">
+            <a href="#" th:href="@{teacherAudit}">教师信息审核</a>
+        </li>
+        <li class="diy-menu" th:if="${activeUrl=='teacherManage' || isTmChild == 'true'}" th:class="${activeUrl=='teacherInfo'? 'diy-menu active': 'diy-menu'}">
+            <a href="#" th:href="@{teacherInfo}">教师信息管理</a>
+        </li>
+    </ul>
+    <ul class="nav nav-sidebar">
         <li th:class="${activeUrl=='infoManage'? 'active': _}">
-            <a href="#"><span class="glyphicon glyphicon-file"></span>&nbsp;&nbsp; 统计信息管理</a>
+            <a href="#"><span class="glyphicon glyphicon-file"></span>&nbsp;&nbsp; 统计管理</a>
         </li>
+        <li th:if="${activeUrl=='infoManage' || isSmChild== 'true'}" class="diy-menu">
+            <a href="#">项目管理</a>
+        </li>
+    </ul>
+    <ul class="nav nav-sidebar">
         <li th:class="${activeUrl=='compManage'? 'active': _}">
-            <a href="#"><sapn class="glyphicon glyphicon-knight"></sapn>&nbsp;&nbsp; 比赛信息管理</a>
+            <a href="#"><sapn class="glyphicon glyphicon-knight"></sapn>&nbsp;&nbsp; 比赛管理</a>
         </li>
     </ul>
 </div>

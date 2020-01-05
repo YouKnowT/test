@@ -6,29 +6,25 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "teacher")
-@Data
 public class Teacher {
+
     @Id
     @GeneratedValue
     @Column(name = "id")
     private long id;
+
     @Column(name = "user_count")
     private long user_count;
-    public long getUser_count() {
-        return user_count;
-    }
-    public void setUser_count(long user_count) {
-        this.user_count = user_count;
-    }
 
+    @Column(name = "is_audit")
+    private Boolean isAudit;
 
     @Override
     public String toString() {
         return "Teacher{" +
                 "id=" + id +
                 ", user_count=" + user_count +
-                ", password='" + password + '\'' +
-                ", name='" + name + '\'' +
+                ", isAudit=" + isAudit +
                 '}';
     }
 
@@ -40,25 +36,19 @@ public class Teacher {
         this.id = id;
     }
 
-    public String getPassword() {
-        return password;
+    public long getUser_count() {
+        return user_count;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setUser_count(long user_count) {
+        this.user_count = user_count;
     }
 
-    public String getName() {
-        return name;
+    public Boolean getAudit() {
+        return isAudit;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setAudit(Boolean audit) {
+        isAudit = audit;
     }
-
-    @Column(name = "password")
-    private String password;
-
-    @Column(name = "name")
-    private String name;
 }

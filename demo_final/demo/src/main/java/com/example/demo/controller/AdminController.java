@@ -44,6 +44,16 @@ public class AdminController {
         return "admin/teacherManage";
     }
 
+    @GetMapping("/teacherAudit")
+    public String teacherAudit(ModelMap modelMap) {
+        return "admin/teacherAudit";
+    }
+
+    @GetMapping("/teacherInfo")
+    public String teacherInfo(ModelMap modelMap) {
+        return "admin/teacherInfo";
+    }
+
     @RequestMapping("findById")
     @ResponseBody
     public Admin findById(@RequestParam("id") long id){
@@ -61,26 +71,26 @@ public class AdminController {
 
     @RequestMapping("saveCompetition")
     @ResponseBody
-    public String saveCompetition(HttpServletRequest request){
-        Competition competition = new Competition();
-        competition.setCompetition_name(request.getParameter("competition_name"));
-        competition.setStudent_count(Long.parseLong(request.getParameter("student_num")));
-        competition.setStudent_name(request.getParameter("student_name"));
-        String category = request.getParameter("category");
-        if (category==null){
-            category = request.getParameter("category_others");
-        }
-        String level = request.getParameter("level");
-        if (level==null){
-            level= request.getParameter("level_others");
-        }
-        competition.setCategory(category);
-        competition.setItem(level);
-        competition.setStudent_guide(request.getParameter("competition_guide"));
-        competition.setStudent_class(request.getParameter("student_class"));
-        competitionService.saveCompetition(competition);
-        return "添加成功";
-    }
+    public String saveCompetition(HttpServletRequest request){ return  null;}
+//        Competition competition = new Competition();
+//        competition.setCompetition_name(request.getParameter("competition_name"));
+//        competition.setStudent_count(Long.parseLong(request.getParameter("student_num")));
+//        competition.setStudent_name(request.getParameter("student_name"));
+//        String category = request.getParameter("category");
+//        if (category==null){
+//            category = request.getParameter("category_others");
+//        }
+//        String level = request.getParameter("level");
+//        if (level==null){
+//            level= request.getParameter("level_others");
+//        }
+//        competition.setCategory(category);
+//        competition.setItem(level);
+//        competition.setStudent_guide(request.getParameter("competition_guide"));
+//        competition.setStudent_class(request.getParameter("student_class"));
+//        competitionService.saveCompetition(competition);
+//        return "添加成功";
+//    }
 
 
 

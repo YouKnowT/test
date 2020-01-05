@@ -1,49 +1,56 @@
 package com.example.demo.entity;
 
-import lombok.Data;
-
 import javax.persistence.*;
 import java.io.Serializable;
 
-//import org.springframework.data.annotation.Id;
 
 
 @Entity
 @Table(name = "student")
-@Data
-public class Student implements Serializable
-{
+public class Student implements Serializable {
+
+    @Id
+    @GeneratedValue
+    @Column(name = "id")
+    private long id;
+
+    @Column(name = "user_count")
+    private long userCount;
+
+    @Column(name = "password")
+    private String password;
+
+    @Column(name = "name")
+    private String name;
+
+    @Column(name = "img")
+    private String img;
+
     @Override
     public String toString() {
         return "Student{" +
                 "id=" + id +
-                ", user_count=" + user_count +
+                ", userCount=" + userCount +
                 ", password='" + password + '\'' +
                 ", name='" + name + '\'' +
                 ", img='" + img + '\'' +
                 '}';
     }
 
-    @Id
-    @GeneratedValue
-    @Column(name = "id")
-    private long id;
-    public long getUser_count() {
-        return user_count;
-    }
-
-    public void setUser_count(long user_count) {
-        this.user_count = user_count;
-    }
-
-    @Column(name = "user_count")
-    private long user_count;
     public long getId() {
         return id;
     }
 
     public void setId(long id) {
         this.id = id;
+    }
+
+    public long getUserCount() {
+        return userCount;
+    }
+
+    public void setUserCount(long userCount) {
+        this.userCount = userCount;
     }
 
     public String getPassword() {
@@ -69,13 +76,4 @@ public class Student implements Serializable
     public void setImg(String img) {
         this.img = img;
     }
-
-    @Column(name = "password")
-    private String password;
-
-    @Column(name = "name")
-    private String name;
-
-    @Column(name = "img")
-    private String img;
 }

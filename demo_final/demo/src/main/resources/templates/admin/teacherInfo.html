@@ -1,15 +1,16 @@
 <!DOCTYPE html>
-
-<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="icon" href="https://v3.bootcss.com/favicon.ico">
-    <title>管理员</title>
+
+    <title>教师信息管理</title>
+
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
     <!-- Custom styles for this template -->
@@ -17,18 +18,16 @@
     <link rel="stylesheet" href="css/diy-style.css" th:href="@{/css/diy-style.css}">
 
 </head>
-
 <body>
-
+<!--导航栏头部-->
 <div th:replace="commons/bar :: topbar"></div>
-
 <div class="container-fluid">
     <div class="row">
-        <div th:replace="commons/bar :: sidebar(activeUrl='teacherManage')"></div>
+        <div th:replace="commons/bar :: sidebar(activeUrl='teacherInfo',isTmChild='true')"></div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-            <h1 class="page-header">教师管理</h1>
+            <h1 class="page-header">教师信息管理</h1>
 
-            <!--<h2 class="sub-header">Section title</h2>-->
+            <!--<h2 class="sub-header">教师信息</h2>-->
             <div class="table-responsive">
                 <table class="table table-striped">
                     <thead>
