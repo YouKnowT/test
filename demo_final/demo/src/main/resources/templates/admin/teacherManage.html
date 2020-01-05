@@ -46,10 +46,11 @@
                         <td th:text="${iterStat.index + 1}">1,001</td>
                         <td th:text="${teacher.userAccount}"></td>
                         <td th:text="${teacher.name}">teacher.name</td>
-                        <td th:text="${teacher.audit == false ? '待审核': _}">teacher.audit</td>
+                        <td th:text="${teacher.audit == false ? '未通过': '已通过'}">teacher.audit</td>
                         <td th:text="${teacher.createTime}">teacher.createTime</td>
                         <td>
-                            <a th:href="@{/admin/editTeacher/} + ${teacher.id}" class="btn btn-info audit" >编辑</a>
+                            <a th:href="@{/admin/teacherEdit/} + ${teacher.id}" class="btn btn-info audit" >编辑</a>
+                            <a th:href="@{/admin/teacherDel/} + ${teacher.id}" class="btn btn-warning audit" >删除</a>
                         </td>
                     </tr>
                     </tbody>

@@ -43,19 +43,18 @@ public class TeacherServiceImp implements TeacherService {
     }
 
 //
-//    @Override
-//    public void updateTeacher(Teacher teacher) {
-//        teacherDao.updateTeacher(teacher);
-//    }
+    @Override
+    public void updateTeacher(Teacher teacher) {
+        teacherDao.saveAndFlush(teacher);
+    }
 //
 //    @Override
 //    public Teacher addTeacher(Teacher teacher) {
 //        return teacherDao.save(teacher);
 //    }
 //
-//    @Override
-//    public void deleteByUser_count(long user_count) {
-//        teacherDao.deleteByUser_count(user_count);
-//    }
-
+    @Override
+    public void deleteById(long id) {
+        teacherDao.deleteById(id);
+    }
 }

@@ -23,6 +23,6 @@ public interface TeacherDao extends JpaRepository<Teacher,Long> {
 //    int updateTeacherAudit(Boolean audit, Long id);
 //    @Query(value = "UPDATE Teacher t SET t.userAccount= ?1,t.name= ?2,t.password= ?3")
 //    void updateTeacher(Teacher teacher);
-//    @Query(value = "DELETE FROM Teacher t WHERE t.user_count=?1")
-//    void deleteByUser_count(long user_count);
+//    @Query(value = "DELETE FROM Teacher t WHERE t.id=?1")
+//    void deleteById(long id);
 }

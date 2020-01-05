@@ -12,7 +12,7 @@ public interface TeacherService {
     List<Teacher> findAll();
 //    Teacher findByName(String name);
     Teacher registerTeacher(Teacher teacher);
-//    void updateTeacher(Teacher teacher);
+    void updateTeacher(Teacher teacher);
 //    Teacher addTeacher(Teacher teacher);
-//    void deleteByUser_count(long user_count);
+    void deleteById(long id);
 }

@@ -44,15 +44,14 @@
             <a href="#" th:href="@{/admin/teacherManage}">
                 <span class="glyphicon glyphicon-user"></span>
                 &nbsp;&nbsp; 教师管理
-                <span class="caret"></span>
             </a>
         </li>
-        <li class="diy-menu" th:if="${activeUrl=='teacherManage' || isTmChild == 'true'}" th:class="${activeUrl=='teacherAudit'? 'diy-menu active': 'diy-menu'}">
-            <a href="#" th:href="@{teacherAudit}">教师信息审核</a>
-        </li>
-        <li class="diy-menu" th:if="${activeUrl=='teacherManage' || isTmChild == 'true'}" th:class="${activeUrl=='teacherInfo'? 'diy-menu active': 'diy-menu'}">
-            <a href="#" th:href="@{teacherInfo}">教师信息管理</a>
-        </li>
+        <!--<li class="diy-menu" th:if="${activeUrl=='teacherManage' || isTmChild == 'true'}" th:class="${activeUrl=='teacherAudit'? 'diy-menu active': 'diy-menu'}">-->
+            <!--<a href="#" th:href="@{teacherAudit}">教师信息审核</a>-->
+        <!--</li>-->
+        <!--<li class="diy-menu" th:if="${activeUrl=='teacherManage' || isTmChild == 'true'}" th:class="${activeUrl=='teacherInfo'? 'diy-menu active': 'diy-menu'}">-->
+            <!--<a href="#" th:href="@{teacherInfo}">教师信息管理</a>-->
+        <!--</li>-->
     </ul>
     <ul class="nav nav-sidebar">
         <li th:class="${activeUrl=='infoManage'? 'active': _}">

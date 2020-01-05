@@ -9,6 +9,7 @@ import com.example.demo.service.AdminService;
 import com.example.demo.service.CompetitionService;
 import com.example.demo.service.StudentService;
 import com.example.demo.service.TeacherService;
+import com.example.demo.util.EncodingHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -16,10 +17,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 //import org.springframework.beans.factory.annotation.Autowired;
 
@@ -48,36 +46,58 @@ public class AdminController {
         return "admin/teacherManage";
     }
 
-    @GetMapping("/teacherAudit")
-    public String teacherAudit(ModelMap modelMap) {
-        try {
-            List<Teacher> teacherList = teacherService.findAllByAudit(true);
-            List<Teacher> teacherList1 = teacherService.findAllByAudit(false);
-            modelMap.addAttribute("auditTeachers", teacherList);
-            modelMap.addAttribute("unAuditTeachers", teacherList1);
-            return "admin/teacherAudit";
-        } catch (Exception e) {
-            System.out.println("获取审核教师数据失败" + e);
-            return "admin/teacherAudit";
-        }
+    @GetMapping("/teacherEdit/{id}")
+    public String teacherEdit(@PathVariable("id") Long id, ModelMap modelMap) {
+        Teacher teacher = teacherService.findById(id);
+        modelMap.addAttribute("teacher", teacher);
+        return "admin/editTeacher";
     }
 
-    @GetMapping("/teacher/{id}")
-    public String updateTeacher(@PathVariable("id") Long id) {
+    @PostMapping("/updateTeacher")
+    public String updateTeacher(Teacher teacher) {
         try {
-           if (null != id) {
-                teacherService.findById(id);
-            }
+            System.out.println(teacher);
+            teacher.setUpdateTime(new Date());
+            teacher.setPassword(EncodingHelper.encode(teacher.getPassword()));
+            teacherService.updateTeacher(teacher);
         } catch (Exception e) {
             System.out.println("获取教师数据失败" + e);
         }
-        return "redirect:/admin/teacherAudit";
+        return "redirect:/admin/teacherManage";
     }
+
+    @GetMapping("/teacherDel/{id}")
+    public String delTeacher(@PathVariable("id") Long id) {
+        try {
+            if (null != id) {
+                teacherService.deleteById(id);
+            }
+        } catch (Exception e) {
+            System.out.println("删除失败" + e);
+        }
+        return "redirect:/admin/teacherManage";
+    }
+
+//    @GetMapping("/teacherAudit")
+//    public String teacherAudit(ModelMap modelMap) {
+//        try {
+//            List<Teacher> teacherList = teacherService.findAllByAudit(true);
+//            List<Teacher> teacherList1 = teacherService.findAllByAudit(false);
+//            modelMap.addAttribute("auditTeachers", teacherList);
+//            modelMap.addAttribute("unAuditTeachers", teacherList1);
+//            return "admin/teacherAudit";
+//        } catch (Exception e) {
+//            System.out.println("获取审核教师数据失败" + e);
+//            return "admin/teacherAudit";
+//        }
+//    }
 //
-    @GetMapping("/teacherInfo")
-    public String teacherInfo(ModelMap modelMap) {
-        return "admin/teacherInfo";
-    }
+//
+////
+//    @GetMapping("/teacherInfo")
+//    public String teacherInfo(ModelMap modelMap) {
+//        return "admin/teacherInfo";
+//    }
 //
 //    @RequestMapping("findById")
 //    @ResponseBody
