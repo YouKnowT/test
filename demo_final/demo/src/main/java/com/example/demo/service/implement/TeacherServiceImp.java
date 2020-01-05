@@ -10,38 +10,40 @@ import org.springframework.stereotype.Service;
 public class TeacherServiceImp implements TeacherService {
     @Autowired
     TeacherDao teacherDao;
+//
+//    @Override
+//    public Teacher findById(long id){
+//
+//        return teacherDao.findById(id);
+//    }
 
     @Override
-    public Teacher findById(long id){
+    public Teacher findByUserAccount(long userAccount) {
+        return teacherDao.findByUserAccount(userAccount);
+    }
 
-        return teacherDao.findById(id);
-    }
-    @Override
-    public Teacher findByUser_count(long user_count){
-        return teacherDao.findByUser_count(user_count);
-    }
-    @Override
-    public Teacher findByName(String name){
-        return teacherDao.findByName(name);
-    }
+    //    @Override
+//    public Teacher findByName(String name){
+//        return teacherDao.findByName(name);
+//    }
     @Override
     public Teacher registerTeacher(Teacher teacher) {
         return teacherDao.save(teacher);
     }
-
-    @Override
-    public void updateTeacher(Teacher teacher) {
-        teacherDao.updateTeacher(teacher);
-    }
-
-    @Override
-    public Teacher addTeacher(Teacher teacher) {
-        return teacherDao.save(teacher);
-    }
-
-    @Override
-    public void deleteByUser_count(long user_count) {
-        teacherDao.deleteByUser_count(user_count);
-    }
+//
+//    @Override
+//    public void updateTeacher(Teacher teacher) {
+//        teacherDao.updateTeacher(teacher);
+//    }
+//
+//    @Override
+//    public Teacher addTeacher(Teacher teacher) {
+//        return teacherDao.save(teacher);
+//    }
+//
+//    @Override
+//    public void deleteByUser_count(long user_count) {
+//        teacherDao.deleteByUser_count(user_count);
+//    }
 
 }

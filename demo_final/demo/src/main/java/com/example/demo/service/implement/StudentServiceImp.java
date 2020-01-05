@@ -10,38 +10,44 @@ import org.springframework.stereotype.Service;
 public class StudentServiceImp implements StudentService {
     @Autowired
     StudentDao studentDao;
+//
+//    @Override
+//    public Student findById(long id){
+//        return studentDao.findById(id);
+//    }
+//    @Override
+//    public Student findByUser_account(long user_account){return studentDao.findByUser_count(user_account);}
+//    @Override
+//    public Student findByName(String name){
+//        return studentDao.findByName(name);
+//    }
 
     @Override
-    public Student findById(long id){
-        return studentDao.findById(id);
+    public Student findByUserAccount(long userAccount) {
+        return null;
     }
-    @Override
-    public Student findByUser_account(long user_account){return studentDao.findByUser_count(user_account);}
-    @Override
-    public Student findByName(String name){
-        return studentDao.findByName(name);
-    }
+
     @Override
     public Student registerStudent(Student student){
         return studentDao.save(student);
     }
-    @Override
-    public Student findAll(){
-        return (Student) studentDao.findAll();
-    }
-
-    @Override
-    public Student addStudent(Student student) {
-        return studentDao.save(student);
-    }
-
-    @Override
-    public void updateStudent(Student student) {
-        studentDao.updateStudent(student);
-    }
-
-    @Override
-    public void deleteByUser_count(long user_count) {
-        studentDao.deleteByUser_count(user_count);
-    }
+//    @Override
+//    public Student findAll(){
+//        return (Student) studentDao.findAll();
+//    }
+//
+//    @Override
+//    public Student addStudent(Student student) {
+//        return studentDao.save(student);
+//    }
+//
+//    @Override
+//    public void updateStudent(Student student) {
+//        studentDao.updateStudent(student);
+//    }
+//
+//    @Override
+//    public void deleteByUser_count(long user_count) {
+//        studentDao.deleteByUser_count(user_count);
+//    }
 }

@@ -23,50 +23,50 @@ import javax.servlet.http.HttpServletRequest;
 @Controller
 @RequestMapping("/admin")
 public class AdminController {
-
-    @Autowired
-    private AdminService adminService;
-    @Autowired
-    private CompetitionService competitionService;
-    @Autowired
-    private StudentService studentService;
-    @Autowired
-    private TeacherService teacherService;
-
-    @RequestMapping("index")
-    public String toIndex(){
-        return  "admin/adminIndex";
-    }
-
-    @GetMapping("/teacherManage")
-    public String teacherManage(ModelMap modelMap) {
-//        modelMap.addAllAttributes("teachers")
-        return "admin/teacherManage";
-    }
-
-    @GetMapping("/teacherAudit")
-    public String teacherAudit(ModelMap modelMap) {
-        return "admin/teacherAudit";
-    }
-
-    @GetMapping("/teacherInfo")
-    public String teacherInfo(ModelMap modelMap) {
-        return "admin/teacherInfo";
-    }
-
-    @RequestMapping("findById")
-    @ResponseBody
-    public Admin findById(@RequestParam("id") long id){
-        Admin admin = null;
-        admin = adminService.findById(id);
-
-        return admin;
-    }
-    @RequestMapping("findCompetition")
-    @ResponseBody
-    public Competition findCompetition(HttpServletRequest request){
-        return null;
-    }
+//
+//    @Autowired
+//    private AdminService adminService;
+//    @Autowired
+//    private CompetitionService competitionService;
+//    @Autowired
+//    private StudentService studentService;
+//    @Autowired
+//    private TeacherService teacherService;
+//
+//    @RequestMapping("index")
+//    public String toIndex(){
+//        return  "admin/adminIndex";
+//    }
+//
+//    @GetMapping("/teacherManage")
+//    public String teacherManage(ModelMap modelMap) {
+////        modelMap.addAllAttributes("teachers")
+//        return "admin/teacherManage";
+//    }
+//
+//    @GetMapping("/teacherAudit")
+//    public String teacherAudit(ModelMap modelMap) {
+//        return "admin/teacherAudit";
+//    }
+//
+//    @GetMapping("/teacherInfo")
+//    public String teacherInfo(ModelMap modelMap) {
+//        return "admin/teacherInfo";
+//    }
+//
+//    @RequestMapping("findById")
+//    @ResponseBody
+//    public Admin findById(@RequestParam("id") long id){
+//        Admin admin = null;
+//        admin = adminService.findById(id);
+//
+//        return admin;
+//    }
+//    @RequestMapping("findCompetition")
+//    @ResponseBody
+//    public Competition findCompetition(HttpServletRequest request){
+//        return null;
+//    }
 
 
     @RequestMapping("saveCompetition")

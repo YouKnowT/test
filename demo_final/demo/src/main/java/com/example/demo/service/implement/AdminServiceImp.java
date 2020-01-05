@@ -12,19 +12,19 @@ public class AdminServiceImp implements AdminService {
     @Autowired
     AdminDao adminDao;
 
-    @Override
-    public Admin findById(long id){
-        return adminDao.findById(id);
-    }
-
+//    @Override
+//    public Admin findById(long id){
+//        return adminDao.findById(id);
+//    }
+//
     @Override
     public Admin findByName(String name) {
         return adminDao.findByName(name);
     }
-
-    @Override
-    public Admin registerAdmin(Admin admin) {
-        return adminDao.save(admin);
-    }
+//
+//    @Override
+//    public Admin registerAdmin(Admin admin) {
+//        return adminDao.save(admin);
+//    }
 
 }

@@ -2,7 +2,7 @@ package com.example.demo.entity;
 
 import javax.persistence.*;
 import java.io.Serializable;
-
+import java.util.Set;
 
 
 @Entity
@@ -14,8 +14,8 @@ public class Student implements Serializable {
     @Column(name = "id")
     private long id;
 
-    @Column(name = "user_count")
-    private long userCount;
+    @Column(name = "user_account")
+    private long userAccount;
 
     @Column(name = "password")
     private String password;
@@ -26,14 +26,20 @@ public class Student implements Serializable {
     @Column(name = "img")
     private String img;
 
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "stu_compet", joinColumns = @JoinColumn(name = "stu_id"),
+            inverseJoinColumns = @JoinColumn(name = "com_id"))
+    private Set<Competition> competitions;
+
     @Override
     public String toString() {
         return "Student{" +
                 "id=" + id +
-                ", userCount=" + userCount +
+                ", userAccount=" + userAccount +
                 ", password='" + password + '\'' +
                 ", name='" + name + '\'' +
                 ", img='" + img + '\'' +
+                ", competitions=" + competitions +
                 '}';
     }
 
@@ -46,11 +52,11 @@ public class Student implements Serializable {
     }
 
     public long getUserCount() {
-        return userCount;
+        return userAccount;
     }
 
-    public void setUserCount(long userCount) {
-        this.userCount = userCount;
+    public void setUserCount(long userAccount) {
+        this.userAccount = userAccount;
     }
 
     public String getPassword() {
@@ -75,5 +81,13 @@ public class Student implements Serializable {
 
     public void setImg(String img) {
         this.img = img;
+    }
+
+    public Set<Competition> getCompetitions() {
+        return competitions;
+    }
+
+    public void setCompetitions(Set<Competition> competitions) {
+        this.competitions = competitions;
     }
 }

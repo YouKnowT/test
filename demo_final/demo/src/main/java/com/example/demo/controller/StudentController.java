@@ -29,9 +29,9 @@ public class StudentController{
     public ModelAndView passParam(Map <String, Object> map, @RequestParam("name") long name){
 
 
-        List<Competition> competitions = competitionService.findByNum(name);
-
-        map.put("competitions",competitions);
+//        List<Competition> competitions = competitionService.findByNum(name);
+//
+//        map.put("competitions",competitions);
 
         ModelAndView mav = new ModelAndView("info_show");
 
@@ -53,35 +53,37 @@ public class StudentController{
     @ResponseBody
     public Student findByName(@RequestParam("name") String name){
         Student student = null;
-        student = studentService.findByName(name);
-        System.out.println(student);
+//        student = studentService.findByName(name);
+//        System.out.println(student);
         return student;
     }
     @RequestMapping("findUserCount")
     @ResponseBody
     public Student findUserCount(@RequestParam("userCount") String userCount){
         Student student = null;
-        student = studentService.findByUser_account(Long.parseLong(userCount));
-        System.out.println(student);
+//        student = studentService.findByUser_account(Long.parseLong(userCount));
+//        System.out.println(student);
         return student;
     }
 
     @RequestMapping("deleteByUser_count")
     @ResponseBody
     public void deleteByUser_count(@RequestParam("user_count") long user_count){
-        studentService.deleteByUser_count(user_count);
+//        studentService.deleteByUser_count(user_count);
     }
 
     @RequestMapping("addStudent")
     @ResponseBody
     public Student addStudent(@RequestParam("student") Student student){
-        return studentService.addStudent(student);
+
+//        return studentService.addStudent(student);
+        return null;
     }
 
     @RequestMapping("updateStudent")
     @ResponseBody
     public void updateStudent(@RequestParam("student") Student student){
-        studentService.updateStudent(student);
+//        studentService.updateStudent(student);
     }
 
 
