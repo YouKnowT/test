@@ -10,9 +10,10 @@ public interface CompetitionService {
 //    List<Competition> findByItem(String item);
 ////    List<Competition> findByName(String name);
 //    List<Competition> findByNum(long num);
-//    List<Competition> findAll();
+    List<Competition> findAll();
+    Competition save(Competition competition);
 //    Competition saveCompetition(Competition competition);
 //    void updateCompetition(Competition competition);
-//    void deleteById(long id);
+    void deleteById(long id);
 //    Competition addCompetition(Competition competition);
 }

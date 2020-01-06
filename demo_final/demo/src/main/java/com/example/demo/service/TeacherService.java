@@ -7,6 +7,7 @@ import java.util.List;
 public interface TeacherService {
 
     Teacher findById(long id);
+
     Teacher findByUserAccount(long userAccount);
     List<Teacher> findAllByAudit(Boolean audit);
     List<Teacher> findAll();

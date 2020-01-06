@@ -2,6 +2,7 @@ package com.example.demo.entity;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Date;
 import java.util.Set;
 
 @Entity
@@ -19,9 +20,11 @@ public class Competition implements Serializable {
     private String name;
 
     // 指导教师
-    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "teacher_id")
-    private Teacher teacher;
+    private long teacherId;
+
+    @JoinColumn(name = "teacher_name")
+    private String teacherName;
 
     // 参赛学生
     @ManyToMany(cascade = CascadeType.ALL)
@@ -49,18 +52,24 @@ public class Competition implements Serializable {
     @Column(name = "imgs")
     private String imgs;
 
+    // 开始时间
+    @Column(name = "start_time")
+    private Date startTime;
+
     @Override
     public String toString() {
         return "Competition{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", teacher=" + teacher +
+                ", teacherName=" + teacherName +
+                ", teacherId=" + teacherId +
                 ", students=" + students +
                 ", category='" + category + '\'' +
                 ", level='" + level + '\'' +
                 ", certificate='" + certificate + '\'' +
                 ", guidaceCertificate='" + guidaceCertificate + '\'' +
                 ", imgs=" + imgs +
+                ", startTime" + startTime +
                 '}';
     }
 
@@ -80,12 +89,20 @@ public class Competition implements Serializable {
         this.name = name;
     }
 
-    public Teacher getTeacher() {
-        return teacher;
+    public long getTeacherId() {
+        return teacherId;
     }
 
-    public void setTeacher(Teacher teacher) {
-        this.teacher = teacher;
+    public void setTeacherId(long teacherId) {
+        this.teacherId = teacherId;
+    }
+
+    public String getTeacherName() {
+        return teacherName;
+    }
+
+    public void setTeacherName(String teacherName) {
+        this.teacherName = teacherName;
     }
 
     public Set<Student> getStudents() {
@@ -134,5 +151,13 @@ public class Competition implements Serializable {
 
     public void setImgs(String imgs) {
         this.imgs = imgs;
+    }
+
+    public Date getStartTime() {
+        return startTime;
+    }
+
+    public void setStartTime(Date startTime) {
+        this.startTime = startTime;
     }
 }

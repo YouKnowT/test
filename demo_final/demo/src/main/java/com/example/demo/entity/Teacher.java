@@ -84,7 +84,7 @@ public class Teacher {
     }
 
     public void setAudit(Boolean audit) {
-        audit = audit;
+        this.audit = audit;
     }
 
     public String getName() {

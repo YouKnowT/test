@@ -8,10 +8,9 @@ server:
 spring:
   mvc:
     date-format: yyyy-MM-dd
-  #  jackson:
+#    jackson:
 #    date-format: yyyy-MM-dd HH:mm:ss
 #    time-zone: GMT+8
-
 
 
   datasource:
@@ -52,3 +51,6 @@ spring:
     cache: false
     servlet:
       content-type: text/html
+
+  dir:
+    uploadPath: C:\filePath

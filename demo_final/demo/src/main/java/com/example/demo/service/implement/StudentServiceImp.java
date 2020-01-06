@@ -6,6 +6,8 @@ import com.example.demo.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service("studentService")
 public class StudentServiceImp implements StudentService {
     @Autowired
@@ -31,10 +33,10 @@ public class StudentServiceImp implements StudentService {
     public Student registerStudent(Student student){
         return studentDao.save(student);
     }
-//    @Override
-//    public Student findAll(){
-//        return (Student) studentDao.findAll();
-//    }
+    @Override
+    public List<Student> findAll(){
+        return studentDao.findAll();
+    }
 //
 //    @Override
 //    public Student addStudent(Student student) {

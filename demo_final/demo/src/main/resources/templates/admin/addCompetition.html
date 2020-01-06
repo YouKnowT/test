@@ -28,52 +28,63 @@
 
 <div class="container-fluid">
     <div class="row">
-        <div th:replace="commons/bar :: sidebar(activeUrl='teacherManage')"></div>
+        <div th:replace="commons/bar :: sidebar(activeUrl='comManage')"></div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-            <h1 class="page-header">教师信息编辑</h1>
+            <h1 class="page-header">新增比赛</h1>
 
-            <form action="admin/updateTeacher" th:action="@{/admin/updateTeacher}" method="post">
-                <input name="id" type="hidden" th:value="${teacher.id}" class="form-control">
+            <form action="admin/updateTeacher" th:action="@{/admin/competitionAdd}" method="post" enctype="multipart/form-data">
+                <div class="row row_h">
+                    <div class="col-lg-3">
+                        <label>竞赛名</label>
+                        <input required name="name" type="text" class="form-control"
+                               placeholder="竞赛名">
+                    </div>
+                </div>
+                <div class="row row_h">
+                    <div class="col-lg-3">
+                        <label>类别</label>
+                        <select required name="category" class="form-control">
+                            <option th:value="${category.name}" th:text="${category.name}" th:each="category: ${categories}"></option>
+                        </select>
+                    </div>
+                </div>
 
                 <div class="row row_h">
                     <div class="col-lg-3">
-                        <label>账号</label>
-                        <input required name="userAccount" th:value="${teacher.userAccount}" type="text" class="form-control"
-                               placeholder="账号">
+                        <label>等级</label>
+                        <select required name="level" class="form-control">
+                            <option value="等级一">等级一</option>
+                            <option value="等级二">等级二</option>
+                            <option value="等级三">等级三</option>
+                        </select>
                     </div>
                 </div>
+
                 <div class="row row_h">
                     <div class="col-lg-3">
-                        <label>密码</label>
-                        <input required name="password" th:value="${teacher.password}" type="password" class="form-control"
-                               placeholder="密码">
-                    </div>
-                </div>
-                <div class="row row_h">
-                    <div class="col-lg-3">
-                        <label>姓名</label>
-                        <input required name="name" th:value="${teacher.name}" type="text" class="form-control" placeholder="姓名">
-                    </div>
-                </div>
-                <div class="row row_h">
-                    <div class="col-lg-3">
-                        <label>创建时间</label>
-                        <input required name="createTime" th:value="${teacher.createTime}" type="date" class="form-control" placeholder="创建时间">
-                    </div>
-                </div>
-                <div class="row row_h">
-                    <div class="col-lg-2">
-                        <label>审核</label>
-                        <select required name="audit" class="form-control" id="audit_select">
-                            <option name="audit" th:selected="${teacher.audit == true ? 'selected': _}" value="true">通过</option>
-                            <option name="audit" th:selected="${teacher.audit == false ? 'selected': _}" value="false">不通过</option>
+                        <label>指导教师</label>
+                        <select required name="teacherId" class="form-control">
+                            <option th:value="${teacher.id}" th:text="${teacher.name}" th:each="teacher: ${teachers} "></option>
                         </select>
                     </div>
                 </div>
                 <div class="row row_h">
+                    <div class="col-lg-3">
+                        <label>上传证书</label>
+                        <input required type="file" name="certificate" class="form-control">
+                    </div>
+                </div>
+                <div class="row row_h">
+                    <div class="col-lg-3">
+                        <label>开始时间</label>
+                        <input required type="date" name="startTime" class="form-control">
+                    </div>
+                </div>
+
+                <div class="row row_h">
                     <div class="col-lg-4">
                         <button type="submit" class="btn btn-success">提交</button>
-                        <a th:href="@{/admin/teacherManage}" type="button" class="btn btn-info" >返回</a>
+                        <a th:href="@{/admin/competeManage}" type="button" class="btn btn-info">返回</a>
                     </div>
                 </div>
 

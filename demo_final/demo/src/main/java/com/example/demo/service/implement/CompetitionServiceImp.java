@@ -11,9 +11,9 @@ import java.util.List;
 
 @Service("competitionService")
 public class CompetitionServiceImp implements CompetitionService {
-//    @Autowired
-//    CompetitionDao competitionDao;
-//
+    @Autowired
+    CompetitionDao competitionDao;
+
 //    @Override
 //    public Competition findById(long id){
 //        return competitionDao.findById(id);
@@ -38,10 +38,20 @@ public class CompetitionServiceImp implements CompetitionService {
 //        return competitionDao.findByNum(num);
 //    }
 //
-//    @Override
-//    public List<Competition> findAll() {
-//        return competitionDao.findAll();
-//    }
+    @Override
+    public List<Competition> findAll() {
+        return competitionDao.findAll();
+    }
+
+    @Override
+    public Competition save(Competition competition) {
+        return competitionDao.save(competition);
+    }
+
+    @Override
+    public void deleteById(long id) {
+        competitionDao.deleteById(id);
+    }
 //    public Competition saveCompetition(Competition competitionItem){
 //        return competitionDao.save(competitionItem);
 //    }
