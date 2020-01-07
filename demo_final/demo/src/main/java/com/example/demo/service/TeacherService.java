@@ -16,4 +16,6 @@ public interface TeacherService {
     void updateTeacher(Teacher teacher);
 //    Teacher addTeacher(Teacher teacher);
     void deleteById(long id);
+
+    void save(Teacher teacher);
 }

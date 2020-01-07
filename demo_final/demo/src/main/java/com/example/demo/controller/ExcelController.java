@@ -33,7 +33,7 @@ public class ExcelController {
      */
     @ResponseBody
     @GetMapping(value = "/exportExcel")
-    public void export(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    public void export( HttpServletResponse response) throws Exception {
         //获取数据
         List<Competition> list = competitionServiceImp.findAll();
         List<Category> list1 = categoryServiceImpl.findAll();
@@ -50,10 +50,11 @@ public class ExcelController {
         //sheet名
         String sheetName = "工作总量明细表";
         String[][] temp = new String[title.length][title.length];
-        for (int i = 0; i < list.size(); i++) {
 
+        for (int i = 0; i < list.size(); i++) {
             Competition obj = list.get(i);
             Category cat = list1.get(i);
+
             temp[i][0] = String.valueOf(obj.getId());
             temp[i][1] = obj.getName();
             temp[i][2] = obj.getCategory();

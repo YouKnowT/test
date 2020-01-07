@@ -32,7 +32,7 @@
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
             <h1 class="page-header">新增比赛</h1>
 
-            <form action="admin/updateTeacher" th:action="@{/admin/competitionAdd}" method="post" enctype="multipart/form-data">
+            <form action="/admin/competitionAdd" th:action="@{/admin/competitionAdd}" method="post" enctype="multipart/form-data">
                 <div class="row row_h">
                     <div class="col-lg-3">
                         <label>竞赛名</label>
@@ -44,7 +44,10 @@
                     <div class="col-lg-3">
                         <label>类别</label>
                         <select required name="category" class="form-control">
-                            <option th:value="${category.name}" th:text="${category.name}" th:each="category: ${categories}"></option>
+                            <option value="A">A</option>
+                            <option value="B">B</option>
+                            <option value="C">C</option>
+                            <!--<option th:value="${category.name}" th:text="${category.name}" th:each="category: ${categories}"></option>-->
                         </select>
                     </div>
                 </div>

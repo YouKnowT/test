@@ -57,4 +57,9 @@ public class TeacherServiceImp implements TeacherService {
     public void deleteById(long id) {
         teacherDao.deleteById(id);
     }
+
+    @Override
+    public void save(Teacher teacher) {
+        teacherDao.save(teacher);
+    }
 }

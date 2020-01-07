@@ -15,7 +15,11 @@
     <!-- Custom styles for this template -->
     <link href="css/dashboard.css" th:href="@{/css/dashboard.css}" rel="stylesheet">
     <link rel="stylesheet" href="css/diy-style.css" th:href="@{/css/diy-style.css}">
-
+    <style>
+        .row_h {
+            margin-top: 20px;
+        }
+    </style>
 </head>
 
 <body>
@@ -24,39 +28,36 @@
 
 <div class="container-fluid">
     <div class="row">
-        <div th:replace="commons/bar :: sidebar(activeUrl='studentManage')"></div>
+        <div th:replace="commons/bar :: sidebar(activeUrl='comManage')"></div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-            <h1 class="page-header">学生信息管理</h1>
-            <a th:href="@{/admin/addStudent}" class="btn btn-primary">新增学生</a>
+            <h1 class="page-header">添加比赛学生</h1>
 
-            <!--<h2 class="sub-header">Section title</h2>-->
-            <div class="table-responsive">
-                <table class="table table-striped">
-                    <thead>
-                    <tr>
-                        <th>序号</th>
-                        <th>账号</th>
-                        <th>姓名</th>
-                        <th>状态</th>
-                        <!--<th>申请时间</th>-->
-                        <th>操作</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr th:each="student, iterStat : ${students}">
-                        <td th:text="${iterStat.index + 1}">1,001</td>
-                        <td th:text="${student.userCount}"></td>
-                        <td th:text="${student.name}">teacher.name</td>
-                        <td th:text="${student.audit == false ? '未通过': '已通过'}">teacher.audit</td>
-                        <!--<td th:text="${teacher.createTime}">teacher.createTime</td>-->
-                        <td>
-                            <a th:href="@{/admin/studentEdit/} + ${student.id}" class="btn btn-info audit" >编辑</a>
-                            <a th:href="@{/admin/studentDel/} + ${student.id}" class="btn btn-warning audit" >删除</a>
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
+            <form action="admin/compStudentAdd" th:action="@{/admin/compStudentAdd}" method="post">
+                <input type="hidden" name="comId" th:value="${competition.id}">
+                <div class="row row_h">
+                    <div class="col-lg-3">
+                        <label>竞赛名</label>
+                        <div class="form-control" th:text="${competition.name}"></div>
+                    </div>
+                </div>
+                <div class="row row_h">
+                    <div class="col-lg-3">
+                        <label>选择学生</label>
+                        <select required name="studentId" class="form-control">
+                            <option th:value="${student.id}" th:text="${student.name}"
+                                    th:each="student: ${students}"></option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="row row_h">
+                    <div class="col-lg-4">
+                        <button type="submit" class="btn btn-success">提交</button>
+                        <a th:href="@{/admin/competeManage}" type="button" class="btn btn-info">返回</a>
+                    </div>
+                </div>
+
+            </form>
         </div>
     </div>
 </div>
@@ -73,3 +74,4 @@
 
 </body>
 </html>
+

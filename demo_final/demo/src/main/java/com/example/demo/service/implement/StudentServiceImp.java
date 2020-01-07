@@ -53,6 +53,11 @@ public class StudentServiceImp implements StudentService {
     public void deleteById(Long id) {
         studentDao.deleteById(id);
     }
+
+    @Override
+    public void save(Student student) {
+        studentDao.save(student);
+    }
 //
 //    @Override
 //    public Student addStudent(Student student) {

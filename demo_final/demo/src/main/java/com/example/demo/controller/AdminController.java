@@ -96,9 +96,9 @@ public class AdminController {
     }
 
     @GetMapping("/studentEdit/{id}")
-    public String studentEdit(@PathVariable("userAccount") Long userAccount, ModelMap modelMap) {
+    public String studentEdit(@PathVariable("id") Long id, ModelMap modelMap) {
         try {
-            Student student = studentService.findByUserAccount(userAccount);
+            Student student = studentService.findById(id);
             modelMap.addAttribute("student", student);
             return "admin/editStudent";
         } catch (Exception e) {
@@ -129,7 +129,7 @@ public class AdminController {
             Student student1 = studentService.findByUserAccount(student.getId());
             student.setPassword(EncodingHelper.encode(student.getPassword()));
             studentService.updateStudent(student);
-            return "redirect:/admin/teacherManage";
+            return "redirect:/admin/studentManage";
         } catch (Exception e) {
             System.out.println("获取学生数据失败" + e);
         }
@@ -189,6 +189,114 @@ public class AdminController {
         }
         return "500";
     }
+
+
+
+// 添加学生
+@GetMapping("/addStudent")
+public String addStudent( ModelMap modelMap) {
+    try {
+        List<Student> students = studentService.findAll();
+        //Competition competition = competitionService.findById(id);
+        modelMap.addAttribute("students", students);
+        //modelMap.addAttribute("competition", competition);
+        return "admin/addStudent";
+    } catch (Exception e) {
+        System.out.println("添加学生页面失败" + e);
+    }
+    return "500";
+}
+
+    @PostMapping(value = "/studentAdd")
+    public String StudentAdd(HttpServletRequest request) {
+        try {
+            Long userAccount = Long.parseLong( request.getParameter("userAccount"));
+            //Long studentId = Long.parseLong(request.getParameter("studentId"));
+            String name=request.getParameter("name");
+            String img = request.getParameter("img");
+            if (userAccount != null && name != null) {
+                Student student = new Student();
+                student.setUserCount(userAccount);
+                student.setName(name);
+                student.setImg(img);
+                studentService.save(student);
+            }
+            return "redirect:/admin/studentManage";
+        } catch (Exception e) {
+            System.out.println("添加比赛学生失败" + e);
+        }
+        return "500";
+    }
+
+
+
+    // 添加教师
+    @GetMapping("/addTeacher")
+    public String addTeacher( ModelMap modelMap) {
+        try {
+            List<Teacher> teachers = teacherService.findAll();
+            //Competition competition = competitionService.findById(id);
+            modelMap.addAttribute("teachers", teachers);
+            //modelMap.addAttribute("competition", competition);
+            return "admin/addTeacher";
+        } catch (Exception e) {
+            System.out.println("添加学生页面失败" + e);
+        }
+        return "500";
+    }
+
+    @PostMapping(value = "/teacherAdd")
+    public String teacherAdd(HttpServletRequest request) {
+        try {
+            Long userAccount = Long.parseLong( request.getParameter("userAccount"));
+            //Long studentId = Long.parseLong(request.getParameter("studentId"));
+            String name=request.getParameter("name");
+            //String img = request.getParameter("img");
+            if (userAccount != null && name!= null) {
+                Teacher teacher = new Teacher();
+                teacher.setUserAccount(userAccount);
+                teacher.setName(name);
+                //student.setImg(img);
+                teacherService.save(teacher);
+            }
+            return "redirect:/admin/teacherManage";
+        } catch (Exception e) {
+            System.out.println("添加教师失败" + e);
+        }
+        return "500";
+    }
+
+//    @GetMapping("/addTeacher")
+//    public String addTeacher(ModelMap modelMap) {
+//        try {
+//            //List<Student> students = studentService.findAll();
+//             List<Teacher> teachers = teacherService.findAll();
+//            modelMap.addAttribute("teachers", teachers);
+//            //modelMap.addAttribute("students", students);
+//            return "admin/addTeacher";
+//        } catch (Exception e) {
+//            System.out.println("添加教师页面数据加载失败" + e);
+//        }
+//        return "500";
+//    }
+//
+//
+//    @PostMapping("/teacherAdd")
+//    public String teacher1Add(@RequestParam("name") MultipartFile file, HttpServletRequest request) {
+//        try {
+//            Teacher teacher = new Teacher();
+//            String name = request.getParameter("name");
+//            String userAccount = request.getParameter("userAccount");
+//            teacher.setName(name);
+//            teacher.setUserAccount(Long.parseLong(userAccount));
+//            System.out.println(teacher);
+//            teacherService.save(teacher);
+//            return "redirect:/admin/teacherManage";
+//        } catch (Exception e) {
+//            System.out.println("添加教师失败" + e);
+//        }
+//        return "500";
+//    }
 
     @PostMapping("/competitionAdd")
     public String competition1Add(@RequestParam("certificate") MultipartFile file, HttpServletRequest request) {

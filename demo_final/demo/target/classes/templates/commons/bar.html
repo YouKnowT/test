@@ -53,17 +53,23 @@
             <!--<a href="#" th:href="@{teacherInfo}">教师信息管理</a>-->
         <!--</li>-->
     </ul>
-    <ul class="nav nav-sidebar">
-        <li th:class="${activeUrl=='infoManage'? 'active': _}">
-            <a href="#"><span class="glyphicon glyphicon-file"></span>&nbsp;&nbsp; 项目管理</a>
-        </li>
-        <!--<li th:if="${activeUrl=='infoManage' || isSmChild== 'true'}" class="diy-menu">-->
-            <!--<a href="#">项目管理</a>-->
+    <!--<ul class="nav nav-sidebar">-->
+        <!--<li th:class="${activeUrl=='studentManage'? 'active': _}">-->
+            <!--<a href="#"><span class="glyphicon glyphicon-file"></span>&nbsp;&nbsp; 项目管理</a>-->
         <!--</li>-->
-    </ul>
+        <!--&lt;!&ndash;<li th:if="${activeUrl=='infoManage' || isSmChild== 'true'}" class="diy-menu">&ndash;&gt;-->
+            <!--&lt;!&ndash;<a href="#">项目管理</a>&ndash;&gt;-->
+        <!--&lt;!&ndash;</li>&ndash;&gt;-->
+    <!--</ul>-->
     <ul class="nav nav-sidebar">
         <li th:class="${activeUrl=='comManage'? 'active': _}">
             <a href="#" th:href="@{/admin/competeManage}"><sapn class="glyphicon glyphicon-knight"></sapn>&nbsp;&nbsp; 比赛管理</a>
+        </li>
+    </ul>
+
+    <ul class="nav nav-sidebar">
+        <li th:class="${activeUrl=='studentManage'? 'active': _}">
+            <a href="#" th:href="@{/admin/studentManage}"><sapn class="glyphicon glyphicon-knight"></sapn>&nbsp;&nbsp; 学生管理</a>
         </li>
     </ul>
 </div>

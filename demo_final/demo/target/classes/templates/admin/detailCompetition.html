@@ -30,57 +30,55 @@
     <div class="row">
         <div th:replace="commons/bar :: sidebar(activeUrl='comManage')"></div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-            <h1 class="page-header">比赛信息编辑</h1>
+            <h1 class="page-header">比赛信息详情</h1>
 
-            <form action="/admin/updateCompetition" th:action="@{/admin/updateCompetition}" method="post">
-                <input name="id" type="hidden" th:value="${competition.id}" class="form-control">
+            <form action="admin/updateTeacher" th:action="@{/admin/updateCompetition}" method="post">
 
                 <div class="row row_h">
                     <div class="col-lg-3">
                         <label>竞赛名</label>
-                        <input required name="name" th:value="${competition.name}" type="text" class="form-control"
+                        <input readonly th:value="${competition.name}" type="text" class="form-control"
                                placeholder="竞赛名">
                     </div>
                 </div>
                 <div class="row row_h">
                     <div class="col-lg-3">
                         <label>类别</label>
-                        <select required name="category" class="form-control">
-                            <option th:value="${category.name}" th:text="${category.name}"
-                                    th:each="category: ${categories}"></option>
-                        </select>
+                        <input readonly th:value="${competition.category}" type="text" class="form-control"
+                               placeholder="类别">
                     </div>
                 </div>
                 <div class="row_h row">
                     <div class="col-lg-3">
                         <label>等级</label>
-                        <select required name="level" class="form-control">
-                            <option value="等级一">等级一</option>
-                            <option value="等级二">等级二</option>
-                            <option value="等级三">等级三</option>
-                        </select>
+                        <input readonly th:value="${competition.level}" type="text" class="form-control"
+                               placeholder="等级">
                     </div>
                 </div>
 
                 <div class="row row_h">
                     <div class="col-lg-3">
                         <label>指导教师</label>
-                        <select required name="teacherId" class="form-control">
-                            <option th:value="${teacher.id}" th:text="${teacher.name}"
-                                    th:each="teacher: ${teachers} "></option>
-                        </select>
+                        <input readonly th:value="${competition.teacherName}" type="text" class="form-control"
+                               placeholder="指导教师">
                     </div>
                 </div>
                 <div class="row row_h">
                     <div class="col-lg-3">
                         <label>开始时间</label>
-                        <input required type="date" name="startTime" class="form-control">
+                        <input readonly type="date" th:value="${competition.startTime}" class="form-control">
+                    </div>
+                </div>
+                <div class="row row_h">
+                    <div class="col-lg-3">
+                        <label>参加学生</label>
+                        <div class="form-control" th:each="student: ${students}" th:text="${student.name}"></div>
+                        <br>
                     </div>
                 </div>
 
                 <div class="row row_h">
                     <div class="col-lg-4">
-                        <button type="submit" class="btn btn-success">提交</button>
                         <a th:href="@{/admin/competeManage}" type="button" class="btn btn-info">返回</a>
                     </div>
                 </div>
