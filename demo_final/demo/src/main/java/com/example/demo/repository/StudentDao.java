@@ -7,8 +7,10 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface StudentDao extends JpaRepository<Student,Long> {
-//    @Query(value = "SELECT s FROM Student s WHERE s.id=?1")
-//    Student findById(long id);
+
+    @Query(value = "SELECT s FROM Student s WHERE s.id=?1")
+    Student findById(long id);
+
     @Query(value = "SELECT s FROM Student s WHERE s.userAccount=?1")
     Student findByUserAccount(long userAccount);
 //    @Query(value = "SELECT s FROM Student s WHERE s.name=?1")

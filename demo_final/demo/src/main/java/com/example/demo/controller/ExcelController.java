@@ -7,6 +7,7 @@ import com.example.demo.service.CompetitionService;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -30,8 +31,8 @@ public class ExcelController {
      * 导出报表
      * * @return
      */
-
     @ResponseBody
+    @GetMapping(value = "/exportExcel")
     public void export(HttpServletRequest request, HttpServletResponse response) throws Exception {
         //获取数据
         List<Competition> list = competitionServiceImp.findAll();
@@ -41,7 +42,6 @@ public class ExcelController {
             double a = ca.getCardinalNumber() * 10;
             ca.setGzl(ca.getBase() * a);
         }
-
 
         // excel标题
         String[] title = {"ID", "比赛名称", "比赛类型", "系数","基数", "工作量"};

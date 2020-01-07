@@ -15,24 +15,16 @@ public class Competition implements Serializable {
     @Column(name = "id")
     private long id;
 
-
-
     //竞赛名称
     @Column(name = "name")
     private String name;
 
     // 指导教师
-    @JoinColumn(name = "teacher_id")
+    @Column(name = "teacher_id")
     private long teacherId;
 
-    @JoinColumn(name = "teacher_name")
+    @Column(name = "teacher_name")
     private String teacherName;
-
-    // 参赛学生
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(name = "stu_compet", joinColumns = @JoinColumn(name = "com_id"),
-            inverseJoinColumns = @JoinColumn(name = "stu_id"))
-    private Set<Student> students;
 
     // 竞赛类别
     @Column(name = "category")
@@ -65,7 +57,6 @@ public class Competition implements Serializable {
                 ", name='" + name + '\'' +
                 ", teacherName=" + teacherName +
                 ", teacherId=" + teacherId +
-                ", students=" + students +
                 ", category='" + category + '\'' +
                 ", level='" + level + '\'' +
                 ", certificate='" + certificate + '\'' +
@@ -105,14 +96,6 @@ public class Competition implements Serializable {
 
     public void setTeacherName(String teacherName) {
         this.teacherName = teacherName;
-    }
-
-    public Set<Student> getStudents() {
-        return students;
-    }
-
-    public void setStudents(Set<Student> students) {
-        this.students = students;
     }
 
     public String getCategory() {

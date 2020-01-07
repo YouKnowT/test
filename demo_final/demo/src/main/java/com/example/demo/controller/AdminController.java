@@ -1,10 +1,7 @@
 package com.example.demo.controller;
 
 
-import com.example.demo.entity.Category;
-import com.example.demo.entity.Competition;
-import com.example.demo.entity.Student;
-import com.example.demo.entity.Teacher;
+import com.example.demo.entity.*;
 import com.example.demo.service.*;
 import com.example.demo.util.EncodingHelper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,10 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 //import org.springframework.beans.factory.annotation.Autowired;
 
@@ -36,6 +30,8 @@ public class AdminController {
     private StudentService studentService;
     @Autowired
     private TeacherService teacherService;
+    @Autowired
+    private StudentCompService studentCompService;
 
     @Autowired
     private CategoryService categoryService;
@@ -61,8 +57,6 @@ public class AdminController {
             System.out.println("获取管理员首页错误" + e);
             return "失败";
         }
-
-
     }
 
     @GetMapping("/teacherManage")
@@ -88,7 +82,6 @@ public class AdminController {
         }
         return "500";
     }
-
 
     @GetMapping("/teacherEdit/{id}")
     public String teacherEdit(@PathVariable("id") Long id, ModelMap modelMap) {
@@ -134,7 +127,6 @@ public class AdminController {
         try {
             //student.setUpdateTime(new Date());
             Student student1 = studentService.findByUserAccount(student.getId());
-            student.setCompetitions(student1.getCompetitions());
             student.setPassword(EncodingHelper.encode(student.getPassword()));
             studentService.updateStudent(student);
             return "redirect:/admin/teacherManage";
@@ -243,17 +235,85 @@ public class AdminController {
         }
         return "500";
     }
+
+    @GetMapping("/competitionEdit/{id}")
+    public String competitionEdit(@PathVariable("id") Long id, ModelMap modelMap) {
+        try {
+            Competition competition =  competitionService.findById(id);
+            List<Category> categories = categoryService.findAll();
+            List<Teacher> teachers = teacherService.findAll();
+            modelMap.addAttribute("competition", competition);
+            modelMap.addAttribute("categories", categories);
+            modelMap.addAttribute("teachers", teachers);
+            return "admin/editCompetition";
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return "500";
+    }
+
     @PostMapping("/updateCompetition")
     public String updateCompetition(Competition competition) {
         try {
-            //student.setUpdateTime(new Date());
             Competition competition1 = competitionService.findById(competition.getId());
-            //competition.setCompetitions(competition1.getCompetitions());
-            //competition.setPassword(EncodingHelper.encode(competition.getPassword()));
-            competitionService.updateCompetition(competition1);
-            return "redirect:/admin/teacherManage";
+            competition.setCertificate(competition1.getCertificate());
+            Teacher teacher = teacherService.findById(competition.getTeacherId());
+            competition.setTeacherName(teacher.getName());
+            competitionService.updateCompetition(competition);
+            return "redirect:/admin/competeManage";
         } catch (Exception e) {
             System.out.println("获取学生数据失败" + e);
+        }
+        return "500";
+    }
+
+    // 添加参赛学生
+    @GetMapping("/addComStudent/{id}")
+    public String addComStudent(@PathVariable("id") Long id, ModelMap modelMap) {
+        try {
+            List<Student> students = studentService.findAll();
+            Competition competition = competitionService.findById(id);
+            modelMap.addAttribute("students", students);
+            modelMap.addAttribute("competition", competition);
+            return "admin/addComStudent";
+        } catch (Exception e) {
+            System.out.println("添加参赛学生页面失败" + e);
+        }
+        return "500";
+    }
+
+    @PostMapping(value = "/compStudentAdd")
+    public String compStudentAdd(HttpServletRequest request) {
+        try {
+            Long comId = Long.parseLong( request.getParameter("comId"));
+            Long studentId = Long.parseLong(request.getParameter("studentId"));
+            if (comId != null && studentId != null) {
+                StudentComp studentComp = new StudentComp();
+                studentComp.setComId(comId);
+                studentComp.setStudentId(studentId);
+                studentCompService.save(studentComp);
+            }
+            return "redirect:/admin/competeManage";
+        } catch (Exception e) {
+            System.out.println("添加比赛学生失败" + e);
+        }
+        return "500";
+    }
+
+    @GetMapping(value = "/competitionDetail/{id}")
+    public String competitionDetail(@PathVariable("id") Long id, ModelMap modelMap) {
+        try {
+            List<StudentComp> studentComps = studentCompService.findByComId(id);
+            Competition competition = competitionService.findById(id);
+            List<Student> students = new ArrayList<>();
+            for(StudentComp sc: studentComps) {
+                students.add(studentService.findById(sc.getStudentId()));
+            }
+            modelMap.addAttribute("competition", competition);
+            modelMap.addAttribute("students", students);
+            return "admin/detailCompetition";
+        } catch (Exception e) {
+            System.out.println(e);
         }
         return "500";
     }

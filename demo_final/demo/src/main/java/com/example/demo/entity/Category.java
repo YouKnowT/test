@@ -24,7 +24,7 @@ public class Category {
 
     //工作量
     @Column(name = "gzl")
-    private double gzl;
+    private Double gzl;
 
     //基数
     @Column(name = "base")
@@ -114,11 +114,11 @@ public class Category {
         this.base = base;
     }
 
-    public double getGzl() {
+    public Double getGzl() {
         return gzl;
     }
 
-    public void setGzl(double gzl) {
+    public void setGzl(Double gzl) {
         this.gzl = gzl;
     }
 }

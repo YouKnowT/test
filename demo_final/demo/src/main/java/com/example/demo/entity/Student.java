@@ -29,11 +29,6 @@ public class Student implements Serializable {
     @Column(name = "img")
     private String img;
 
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(name = "stu_compet", joinColumns = @JoinColumn(name = "stu_id"),
-            inverseJoinColumns = @JoinColumn(name = "com_id"))
-    private Set<Competition> competitions;
-
     @Override
     public String toString() {
         return "Student{" +
@@ -42,7 +37,6 @@ public class Student implements Serializable {
                 ", password='" + password + '\'' +
                 ", name='" + name + '\'' +
                 ", img='" + img + '\'' +
-                ", competitions=" + competitions +
                 "is_audit"+audit+
                 '}';
     }
@@ -85,14 +79,6 @@ public class Student implements Serializable {
 
     public void setImg(String img) {
         this.img = img;
-    }
-
-    public Set<Competition> getCompetitions() {
-        return competitions;
-    }
-
-    public void setCompetitions(Set<Competition> competitions) {
-        this.competitions = competitions;
     }
 
     public Boolean getAudit() {

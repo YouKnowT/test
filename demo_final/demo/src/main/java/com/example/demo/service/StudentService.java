@@ -10,6 +10,7 @@ public interface StudentService {
     Student findByUserAccount(long userAccount);
     Student registerStudent(Student student);
     List<Student> findAll();
+    Student findById(long id);
 
     void updateStudent(Student student);
 
