@@ -15,6 +15,8 @@ public class Competition implements Serializable {
     @Column(name = "id")
     private long id;
 
+
+
     //竞赛名称
     @Column(name = "name")
     private String name;
@@ -160,4 +162,12 @@ public class Competition implements Serializable {
     public void setStartTime(Date startTime) {
         this.startTime = startTime;
     }
+
+//    public double getGzl() {
+//        return gzl;
+//    }
+//
+//    public void setGzl(double gzl) {
+//        this.gzl = gzl;
+//    }
 }

@@ -1311,188 +1311,203 @@
       <DataType>bigint(20)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="323" parent="285" name="FKne1gn9du4mvxnp7ckofdu965h">
+    <column id="323" parent="285" name="start_time">
+      <Position>23</Position>
+      <DataType>datetime|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="324" parent="285" name="teacher_name">
+      <Position>24</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <index id="325" parent="285" name="FKne1gn9du4mvxnp7ckofdu965h">
       <ColNames>teacher_id</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="324" parent="285" name="FKmaayvnhhdipsu18n0r9r18irg">
+    <index id="326" parent="285" name="FKmaayvnhhdipsu18n0r9r18irg">
       <ColNames>com_id</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="325" parent="285" name="PRIMARY">
+    <key id="327" parent="285" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="326" parent="286" name="next_val">
+    <column id="328" parent="286" name="next_val">
       <Position>1</Position>
       <DataType>bigint(20)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="327" parent="287" name="id">
+    <column id="329" parent="287" name="id">
       <Position>1</Position>
       <DataType>bigint(20)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="328" parent="287" name="coefficient">
+    <column id="330" parent="287" name="coefficient">
       <Position>2</Position>
       <DataType>float|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="329" parent="287" name="create_time">
+    <column id="331" parent="287" name="create_time">
       <Position>3</Position>
       <DataType>datetime|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="330" parent="287" name="name">
+    <column id="332" parent="287" name="name">
       <Position>4</Position>
       <DataType>varchar(255)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="331" parent="287" name="update_time">
+    <column id="333" parent="287" name="update_time">
       <Position>5</Position>
       <DataType>datetime|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="332" parent="287" name="category_id">
+    <column id="334" parent="287" name="category_id">
       <Position>6</Position>
       <DataType>bigint(20)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="333" parent="287" name="project_id">
+    <column id="335" parent="287" name="project_id">
       <Position>7</Position>
       <DataType>bigint(20)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="334" parent="287" name="FKe0w7gh0rpmxo35nltk6g8517q">
+    <index id="336" parent="287" name="FKe0w7gh0rpmxo35nltk6g8517q">
       <ColNames>category_id</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="335" parent="287" name="FKo189th3g6wkvjk0s8ubyfg3oo">
+    <index id="337" parent="287" name="FKo189th3g6wkvjk0s8ubyfg3oo">
       <ColNames>project_id</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="336" parent="287" name="PRIMARY">
+    <key id="338" parent="287" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="337" parent="288" name="stu_id">
+    <column id="339" parent="288" name="stu_id">
       <Position>1</Position>
       <DataType>bigint(20)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="338" parent="288" name="com_id">
+    <column id="340" parent="288" name="com_id">
       <Position>2</Position>
       <DataType>bigint(20)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="339" parent="288" name="FK3botlrcctpp6i5qai8reu1fp6">
+    <index id="341" parent="288" name="FK3botlrcctpp6i5qai8reu1fp6">
       <ColNames>stu_id</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="340" parent="288" name="PRIMARY">
+    <key id="342" parent="288" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>com_id
 stu_id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="341" parent="289" name="id">
+    <column id="343" parent="289" name="id">
       <Position>1</Position>
       <DataType>bigint(20)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="342" parent="289" name="img">
+    <column id="344" parent="289" name="img">
       <Position>2</Position>
       <DataType>varchar(255)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="343" parent="289" name="name">
+    <column id="345" parent="289" name="name">
       <Position>3</Position>
       <DataType>varchar(255)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="344" parent="289" name="password">
+    <column id="346" parent="289" name="password">
       <Position>4</Position>
       <DataType>varchar(255)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="345" parent="289" name="user_count">
+    <column id="347" parent="289" name="user_count">
       <Position>5</Position>
       <DataType>bigint(20)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="346" parent="289" name="img_local1">
+    <column id="348" parent="289" name="img_local1">
       <Position>6</Position>
       <DataType>varchar(255)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="347" parent="289" name="img_local2">
+    <column id="349" parent="289" name="img_local2">
       <Position>7</Position>
       <DataType>varchar(255)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="348" parent="289" name="img_local3">
+    <column id="350" parent="289" name="img_local3">
       <Position>8</Position>
       <DataType>varchar(255)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="349" parent="289" name="user_account">
+    <column id="351" parent="289" name="user_account">
       <Position>9</Position>
       <DataType>bigint(20)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <key id="350" parent="289" name="PRIMARY">
+    <column id="352" parent="289" name="is_audit">
+      <Position>10</Position>
+      <DataType>bit(1)|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <key id="353" parent="289" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="351" parent="290" name="id">
+    <column id="354" parent="290" name="id">
       <Position>1</Position>
       <DataType>bigint(20)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="352" parent="290" name="name">
+    <column id="355" parent="290" name="name">
       <Position>2</Position>
       <DataType>varchar(255)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="353" parent="290" name="password">
+    <column id="356" parent="290" name="password">
       <Position>3</Position>
       <DataType>varchar(255)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="354" parent="290" name="user_count">
+    <column id="357" parent="290" name="user_count">
       <Position>4</Position>
       <DataType>bigint(20)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="355" parent="290" name="is_audit">
+    <column id="358" parent="290" name="is_audit">
       <Position>5</Position>
       <DataType>bit(1)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="356" parent="290" name="create_time">
+    <column id="359" parent="290" name="create_time">
       <Position>6</Position>
       <DataType>datetime|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="357" parent="290" name="update_time">
+    <column id="360" parent="290" name="update_time">
       <Position>7</Position>
       <DataType>datetime|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="358" parent="290" name="user_account">
+    <column id="361" parent="290" name="user_account">
       <Position>8</Position>
       <DataType>bigint(20)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <key id="359" parent="290" name="PRIMARY">
+    <key id="362" parent="290" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>

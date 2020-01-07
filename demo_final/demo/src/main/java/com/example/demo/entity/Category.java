@@ -22,7 +22,15 @@ public class Category {
     @Column(name = "name")
     private String name;
 
-    // 基数
+    //工作量
+    @Column(name = "gzl")
+    private double gzl;
+
+    //基数
+    @Column(name = "base")
+    private Float base;
+
+    // 系数
     @Column(name = "cardinal_number")
     private Float cardinalNumber;
 
@@ -96,5 +104,21 @@ public class Category {
 
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
+    }
+
+    public Float getBase() {
+        return base;
+    }
+
+    public void setBase(Float base) {
+        this.base = base;
+    }
+
+    public double getGzl() {
+        return gzl;
+    }
+
+    public void setGzl(double gzl) {
+        this.gzl = gzl;
     }
 }
