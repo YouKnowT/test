@@ -37,6 +37,16 @@ public class StudentServiceImp implements StudentService {
     public List<Student> findAll(){
         return studentDao.findAll();
     }
+
+    @Override
+    public void updateStudent(Student student) {
+        studentDao.saveAndFlush(student);
+    }
+
+    @Override
+    public void deleteById(Long id) {
+        studentDao.deleteById(id);
+    }
 //
 //    @Override
 //    public Student addStudent(Student student) {

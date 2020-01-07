@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="https://v3.bootcss.com/favicon.ico">
+    <title>管理员</title>
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="css/dashboard.css" th:href="@{/css/dashboard.css}" rel="stylesheet">
+    <link rel="stylesheet" href="css/diy-style.css" th:href="@{/css/diy-style.css}">
+    <style>
+        .row_h {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div th:replace="commons/bar :: topbar"></div>
+
+<div class="container-fluid">
+    <div class="row">
+        <div th:replace="commons/bar :: sidebar(activeUrl='comManage')"></div>
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+            <h1 class="page-header">新增比赛</h1>
+
+            <form action="admin/updateTeacher" th:action="@{/admin/competitionAdd}" method="post" enctype="multipart/form-data">
+                <div class="row row_h">
+                    <div class="col-lg-3">
+                        <label>竞赛名</label>
+                        <input required name="name" type="text" class="form-control"
+                               placeholder="竞赛名">
+                    </div>
+                </div>
+                <div class="row row_h">
+                    <div class="col-lg-3">
+                        <label>类别</label>
+                        <select required name="category" class="form-control">
+                            <option th:value="${category.name}" th:text="${category.name}" th:each="category: ${categories}"></option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="row row_h">
+                    <div class="col-lg-3">
+                        <label>等级</label>
+                        <select required name="level" class="form-control">
+                            <option value="等级一">等级一</option>
+                            <option value="等级二">等级二</option>
+                            <option value="等级三">等级三</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="row row_h">
+                    <div class="col-lg-3">
+                        <label>指导教师</label>
+                        <select required name="teacherId" class="form-control">
+                            <option th:value="${teacher.id}" th:text="${teacher.name}" th:each="teacher: ${teachers} "></option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row row_h">
+                    <div class="col-lg-3">
+                        <label>上传证书</label>
+                        <input required type="file" name="certificate" class="form-control">
+                    </div>
+                </div>
+                <div class="row row_h">
+                    <div class="col-lg-3">
+                        <label>开始时间</label>
+                        <input required type="date" name="startTime" class="form-control">
+                    </div>
+                </div>
+
+                <div class="row row_h">
+                    <div class="col-lg-4">
+                        <button type="submit" class="btn btn-success">提交</button>
+                        <a th:href="@{/admin/competeManage}" type="button" class="btn btn-info">返回</a>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="js/jquery.min.js" th:src="@{/js/jquery.min.js}"></script>
+<script>window.jQuery || document.write('<script src="js/jquery.min.js" th:src="@{/js/jquery.min.js}"><\/script>')</script>
+<script src="js/bootstrap.min.js" th:src="@{/js/bootstrap.min.js}"></script>
+<!-- Just to make our placeholder images work. Don't actually copy the next line! -->
+<script src="js/holder.min.js" th:src="@{/js/holder.min.js}"></script>
+
+
+</body>
+</html>
+

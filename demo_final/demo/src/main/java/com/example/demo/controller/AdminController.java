@@ -1,8 +1,10 @@
 package com.example.demo.controller;
 
 
-import ch.qos.logback.core.encoder.EchoEncoder;
-import com.example.demo.entity.*;
+import com.example.demo.entity.Category;
+import com.example.demo.entity.Competition;
+import com.example.demo.entity.Student;
+import com.example.demo.entity.Teacher;
 import com.example.demo.service.*;
 import com.example.demo.util.EncodingHelper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,14 +12,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.ModelAndView;
-import org.thymeleaf.util.DateUtils;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 //import org.springframework.beans.factory.annotation.Autowired;
 
@@ -74,6 +77,19 @@ public class AdminController {
        return "500";
     }
 
+    @GetMapping("/studentManage")
+    public String studentManage(ModelMap modelMap) {
+        try {
+            List<Student> students = studentService.findAll();
+            modelMap.addAttribute("students", students);
+            return "admin/studentManage";
+        } catch (Exception e) {
+            System.out.println("学生管理数据请求失败" + e);
+        }
+        return "500";
+    }
+
+
     @GetMapping("/teacherEdit/{id}")
     public String teacherEdit(@PathVariable("id") Long id, ModelMap modelMap) {
         try {
@@ -84,6 +100,18 @@ public class AdminController {
             System.out.println("修改教师数据请求失败" + e);
         }
        return "500";
+    }
+
+    @GetMapping("/studentEdit/{id}")
+    public String studentEdit(@PathVariable("userAccount") Long userAccount, ModelMap modelMap) {
+        try {
+            Student student = studentService.findByUserAccount(userAccount);
+            modelMap.addAttribute("student", student);
+            return "admin/editStudent";
+        } catch (Exception e) {
+            System.out.println("修改学生数据请求失败" + e);
+        }
+        return "500";
     }
 
     @PostMapping("/updateTeacher")
@@ -101,6 +129,22 @@ public class AdminController {
         return "500";
     }
 
+    @PostMapping("/updateStudent")
+    public String updateStudent(Student student) {
+        try {
+            //student.setUpdateTime(new Date());
+            Student student1 = studentService.findByUserAccount(student.getId());
+            student.setCompetitions(student1.getCompetitions());
+            student.setPassword(EncodingHelper.encode(student.getPassword()));
+            studentService.updateStudent(student);
+            return "redirect:/admin/teacherManage";
+        } catch (Exception e) {
+            System.out.println("获取学生数据失败" + e);
+        }
+        return "500";
+    }
+
+
     @GetMapping("/teacherDel/{id}")
     public String delTeacher(@PathVariable("id") Long id) {
         try {
@@ -113,6 +157,20 @@ public class AdminController {
         }
         return "500";
     }
+
+    @GetMapping("/studentDel/{id}")
+    public String delStudent(@PathVariable("id") Long id) {
+        try {
+            if (null != id) {
+                studentService.deleteById(id);
+            }
+            return "redirect:/admin/studentManage";
+        } catch (Exception e) {
+            System.out.println("删除失败" + e);
+        }
+        return "500";
+    }
+
 
     @GetMapping("/competeManage")
     public String competition(ModelMap modelMap) {
@@ -182,6 +240,20 @@ public class AdminController {
             return "redirect:/admin/competeManage";
         } catch (Exception e) {
             System.out.println("删除失败" + e);
+        }
+        return "500";
+    }
+    @PostMapping("/updateCompetition")
+    public String updateCompetition(Competition competition) {
+        try {
+            //student.setUpdateTime(new Date());
+            Competition competition1 = competitionService.findById(competition.getId());
+            //competition.setCompetitions(competition1.getCompetitions());
+            //competition.setPassword(EncodingHelper.encode(competition.getPassword()));
+            competitionService.updateCompetition(competition1);
+            return "redirect:/admin/teacherManage";
+        } catch (Exception e) {
+            System.out.println("获取学生数据失败" + e);
         }
         return "500";
     }

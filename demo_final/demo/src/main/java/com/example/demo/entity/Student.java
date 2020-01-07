@@ -20,6 +20,9 @@ public class Student implements Serializable {
     @Column(name = "password")
     private String password;
 
+    @Column(name = "is_audit")
+    private Boolean audit;
+
     @Column(name = "name")
     private String name;
 
@@ -40,6 +43,7 @@ public class Student implements Serializable {
                 ", name='" + name + '\'' +
                 ", img='" + img + '\'' +
                 ", competitions=" + competitions +
+                "is_audit"+audit+
                 '}';
     }
 
@@ -89,5 +93,13 @@ public class Student implements Serializable {
 
     public void setCompetitions(Set<Competition> competitions) {
         this.competitions = competitions;
+    }
+
+    public Boolean getAudit() {
+        return audit;
+    }
+
+    public void setAudit(Boolean audit) {
+        this.audit = audit;
     }
 }

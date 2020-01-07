@@ -6,10 +6,11 @@ server:
   port: 8881
 
 spring:
-#  jackson:
+  mvc:
+    date-format: yyyy-MM-dd
+#    jackson:
 #    date-format: yyyy-MM-dd HH:mm:ss
 #    time-zone: GMT+8
-
 
 
   datasource:
@@ -50,3 +51,6 @@ spring:
     cache: false
     servlet:
       content-type: text/html
+
+  dir:
+    uploadPath: C:\filePath

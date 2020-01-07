@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="https://v3.bootcss.com/favicon.ico">
+    <title>管理员</title>
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="css/dashboard.css" th:href="@{/css/dashboard.css}" rel="stylesheet">
+    <link rel="stylesheet" href="css/diy-style.css" th:href="@{/css/diy-style.css}">
+
+</head>
+
+<body>
+
+<div th:replace="commons/bar :: topbar"></div>
+
+<div class="container-fluid">
+    <div class="row">
+        <div th:replace="commons/bar :: sidebar(activeUrl='comManage')"></div>
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+
+            <h1 class="page-header">比赛管理</h1>
+
+            <a th:href="@{/admin/addCompetition}" class="btn btn-primary">新增比赛</a>
+            <div class="table-responsive" style="margin-top: 20px;">
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>序号</th>
+                        <th>竞赛名</th>
+                        <th>类别</th>
+                        <th>等级</th>
+                        <th>带队老师</th>
+                        <th>开始时间</th>
+                        <th>操作</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="competition, iterStat : ${competitions}">
+                        <td th:text="${iterStat.index + 1}">1,001</td>
+                        <td th:text="${competition.name}"></td>
+                        <td th:text="${competition.category}">teacher.name</td>
+                        <td th:text="${competition.level}">teacher.audit</td>
+                        <td th:text="${competition.teacherName}">teacher.createTime</td>
+                        <td>
+                            <a th:href="@{/admin/competitionEdit/} + ${competition.id}" class="btn btn-info audit" >编辑</a>
+                            <a th:href="@{/admin/delCompetition/} + ${competition.id}" class="btn btn-warning audit" >删除</a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="js/jquery.min.js" th:src="@{/js/jquery.min.js}"></script>
+<script>window.jQuery || document.write('<script src="js/jquery.min.js" th:src="@{/js/jquery.min.js}"><\/script>')</script>
+<script src="js/bootstrap.min.js" th:src="@{/js/bootstrap.min.js}"></script>
+<!-- Just to make our placeholder images work. Don't actually copy the next line! -->
+<script src="js/holder.min.js" th:src="@{/js/holder.min.js}"></script>
+
+
+</body>
+</html>

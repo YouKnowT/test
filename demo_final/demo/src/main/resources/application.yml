@@ -23,7 +23,7 @@ spring:
 #    url: jdbc:mysql://211.82.97.237:5606/competitionsystem?serverTimezone=UTC&useSSL=false
     url: jdbc:mysql://localhost:3306/competitionsystem?characterEncoding=utf-8&serverTimezone=UTC&useSSL=false
     username: root
-    password: "mysql"
+    password: "strawberryPi014"
     driver-class-name: com.mysql.cj.jdbc.Driver
 
     hikari:

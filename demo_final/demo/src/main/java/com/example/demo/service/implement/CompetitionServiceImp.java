@@ -8,13 +8,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service("competitionService")
 public class CompetitionServiceImp implements CompetitionService {
     @Autowired
     CompetitionDao competitionDao;
 
-//    @Override
+    @Override
+    public Competition findById(long id) {
+        return competitionDao.findById(id);
+    }
+
+    //    @Override
 //    public Competition findById(long id){
 //        return competitionDao.findById(id);
 //    }
@@ -51,6 +57,11 @@ public class CompetitionServiceImp implements CompetitionService {
     @Override
     public void deleteById(long id) {
         competitionDao.deleteById(id);
+    }
+
+    @Override
+    public void updateCompetition(Competition competition) {
+        competitionDao.saveAndFlush(competition);
     }
 //    public Competition saveCompetition(Competition competitionItem){
 //        return competitionDao.save(competitionItem);

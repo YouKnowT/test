@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="https://v3.bootcss.com/favicon.ico">
+
+    <title>管理员</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+
+
+    <!-- Custom styles for this template -->
+    <link href="css/dashboard.css" th:href="@{/css/dashboard.css}" rel="stylesheet">
+    <link rel="stylesheet" href="css/diy-style.css" th:href="@{/css/diy-style.css}">
+
+</head>
+
+<body>
+
+<!--引入头部导航栏-->
+<div th:replace="commons/bar :: topbar"></div>
+
+<div class="container-fluid">
+    <div class="row">
+        <!--引入左侧边栏-->
+        <div th:replace="commons/bar :: sidebar(activeUrl='adminIndex')"></div>
+
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+            <h1 class="page-header">竞赛信息</h1>
+            <div class="row placeholders">
+                <div class="col-sm-offset-1 col-sm-8">
+                    <div id="data" style="width: 100%; height: 500px;"></div>
+                    <h4>竞赛数据</h4>
+                    <span class="text-muted"></span>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="js/jquery.min.js" th:src="@{/js/jquery.min.js}"></script>
+<script>window.jQuery || document.write('<script src="js/jquery.min.js" th:src="@{/js/jquery.min.js}"><\/script>')</script>
+<script src="js/bootstrap.min.js" th:src="@{/js/bootstrap.min.js}"></script>
+<!-- Just to make our placeholder images work. Don't actually copy the next line! -->
+<script src="js/holder.min.js" th:src="@{/js/holder.min.js}"></script>
+<script src="js/plugins/echarts/echarts-all.js" th:src="@{/js/plugins/echarts/echarts-all.js}"></script>
+<script>
+
+    $(document).ready(function () {
+
+        let teachers = [];
+        let students = [];
+        let competitions = [];
+        $.ajax({
+            url: '/homework/admin/indexData',
+            type: 'GET',
+            async: false,
+            datatype: 'jsonp',
+            success: function (data) {
+                teachers = data.teachers;
+                students = data.students;
+                competitions = data.competitions;
+
+            },
+            error: function (data) {
+                console.log(data);
+            }
+        });
+
+        let teacherChart = echarts.init(document.getElementById('data'));
+        let option = {
+            // title: {
+            //     text: '某站点用户访问来源',
+            //     subtext: '纯属虚构',
+            //     left: 'center'
+            // },
+            tooltip: {
+                trigger: 'item',
+                formatter: '{a} <br/>{b} : {c} ({d}%)'
+            },
+            legend: {
+                // orient: 'vertical',
+                orient: 'horizontal',
+                left: 'right',
+                data: ['参赛学生', '参赛教师', '竞赛数量']
+            },
+            series: [
+                {
+                    name: '竞赛信息',
+                    type: 'pie',
+                    radius: '55%',
+                    center: ['50%', '60%'],
+                    data: [
+                        {value: students.length, name: '参赛学生'},
+                        {value: teachers.length, name: '参赛教师'},
+                        {value: competitions.length, name: '竞赛数量'}
+                    ],
+                    emphasis: {
+                        itemStyle: {
+                            shadowBlur: 10,
+                            shadowOffsetX: 0,
+                            shadowColor: 'rgba(0, 0, 0, 0.5)'
+                        }
+                    }
+                }
+            ]
+        };
+
+        teacherChart.setOption(option);
+    });
+
+
+</script>
+
+
+</body>
+</html>

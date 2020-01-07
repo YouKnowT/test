@@ -9,8 +9,8 @@ import java.util.List;
 
 @Repository
 public interface CompetitionDao extends JpaRepository<Competition,Long> {
-//    @Query(value = "SELECT c FROM Competition c WHERE c.id=?1")
-//    Competition findById(long id);
+    @Query(value = "SELECT c FROM Competition c WHERE c.id=?1")
+    Competition findById(long id);
 //
 //    @Query(value = "SELECT c FROM Competition c WHERE c.category=?1")
 //    List<Competition> findByCategory(String category);

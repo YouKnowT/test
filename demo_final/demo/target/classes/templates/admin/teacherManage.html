@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="https://v3.bootcss.com/favicon.ico">
+    <title>管理员</title>
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="css/dashboard.css" th:href="@{/css/dashboard.css}" rel="stylesheet">
+    <link rel="stylesheet" href="css/diy-style.css" th:href="@{/css/diy-style.css}">
+
+</head>
+
+<body>
+
+<div th:replace="commons/bar :: topbar"></div>
+
+<div class="container-fluid">
+    <div class="row">
+        <div th:replace="commons/bar :: sidebar(activeUrl='teacherManage')"></div>
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+            <h1 class="page-header">教师信息管理</h1>
+
+            <!--<h2 class="sub-header">Section title</h2>-->
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>序号</th>
+                        <th>账号</th>
+                        <th>姓名</th>
+                        <th>状态</th>
+                        <th>申请时间</th>
+                        <th>操作</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="teacher, iterStat : ${teachers}">
+                        <td th:text="${iterStat.index + 1}">1,001</td>
+                        <td th:text="${teacher.userAccount}"></td>
+                        <td th:text="${teacher.name}">teacher.name</td>
+                        <td th:text="${teacher.audit == false ? '未通过': '已通过'}">teacher.audit</td>
+                        <td th:text="${teacher.createTime}">teacher.createTime</td>
+                        <td>
+                            <a th:href="@{/admin/teacherEdit/} + ${teacher.id}" class="btn btn-info audit" >编辑</a>
+                            <a th:href="@{/admin/teacherDel/} + ${teacher.id}" class="btn btn-warning audit" >删除</a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="js/jquery.min.js" th:src="@{/js/jquery.min.js}"></script>
+<script>window.jQuery || document.write('<script src="js/jquery.min.js" th:src="@{/js/jquery.min.js}"><\/script>')</script>
+<script src="js/bootstrap.min.js" th:src="@{/js/bootstrap.min.js}"></script>
+<!-- Just to make our placeholder images work. Don't actually copy the next line! -->
+<script src="js/holder.min.js" th:src="@{/js/holder.min.js}"></script>
+
+
+</body>
+</html>

@@ -84,18 +84,18 @@
 									
 								</thead>
 								<tbody> 
-									<c:forEach items="${thisscoreall }" var="target">
+									<c:forEach items="${Competition}" var="c">
 										<tr>
-										<td>${target.class_name }</td> 
-										<td>${target.course_name }</td> 
-										<td>${target.target }</td> 
-										<td>${target.scoure }</td> 
-										<td>${target.scoure_content }</td> 
-										<td>${target.class_name }</td> 
-										<td>${target.course_name }</td> 
-										<td>${target.target }</td> 
-										<td>${target.scoure }</td> 
-										<td>${target.scoure_content }</td> 
+										<td>${c.student_class }</td>
+										<td>${c.student_name }</td>
+										<td>${c.student_count }</td>
+										<td>${c.student_guide }</td>
+										<td>${c.competition_name }</td>
+										<td>${c.category }</td>
+										<td>${c.item }</td>
+										<td>${c.target }</td>
+										<td>${c.scoure }</td>
+										<td>${c.scoure_content }</td>
 										<td>
 											<a href="admin_add_info.html">
 														<button type="button" class="btn btn-sm btn-primary" >修改</button>

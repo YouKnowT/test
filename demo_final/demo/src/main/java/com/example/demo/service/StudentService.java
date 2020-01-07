@@ -10,6 +10,10 @@ public interface StudentService {
     Student findByUserAccount(long userAccount);
     Student registerStudent(Student student);
     List<Student> findAll();
+
+    void updateStudent(Student student);
+
+    void deleteById(Long id);
 //    void updateStudent(Student student);
 //    Student addStudent(Student student);
 //    void deleteByUser_count(long user_count);
