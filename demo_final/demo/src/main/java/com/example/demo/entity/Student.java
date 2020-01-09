@@ -15,7 +15,7 @@ public class Student implements Serializable {
     private long id;
 
     @Column(name = "user_account")
-    private long userAccount;
+    private long userCount;
 
     @Column(name = "password")
     private String password;
@@ -33,7 +33,7 @@ public class Student implements Serializable {
     public String toString() {
         return "Student{" +
                 "id=" + id +
-                ", userAccount=" + userAccount +
+                ", user_account=" + userCount +
                 ", password='" + password + '\'' +
                 ", name='" + name + '\'' +
                 ", img='" + img + '\'' +
@@ -50,11 +50,11 @@ public class Student implements Serializable {
     }
 
     public long getUserCount() {
-        return userAccount;
+        return userCount;
     }
 
-    public void setUserCount(long userAccount) {
-        this.userAccount = userAccount;
+    public void setUserCount(long userCount) {
+        this.userCount = userCount;
     }
 
     public String getPassword() {

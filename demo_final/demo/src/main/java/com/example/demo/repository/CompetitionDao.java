@@ -13,6 +13,11 @@ public interface CompetitionDao extends JpaRepository<Competition,Long> {
     Competition findById(long id);
     @Query(value = "SELECT c FROM Competition c")
     List<Competition> findAll();
+
+    @Query(value = "SELECT c FROM Competition c WHERE c.student_name=?1")
+    List<Competition> findByStudent_name(String student_name);
+    @Query(value = "SELECT c FROM Competition c WHERE c.student_count=?1")
+    List<Competition> findByStudent_count(long student_count);
 //
 //    @Query(value = "SELECT c FROM Competition c WHERE c.category=?1")
 //    List<Competition> findByCategory(String category);

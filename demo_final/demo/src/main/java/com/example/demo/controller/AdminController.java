@@ -48,7 +48,7 @@ public class AdminController {
             List<Teacher> teachers = teacherService.findAll();
             List<Student> students = studentService.findAll();
             List<Competition> competitions = competitionService.findAll();
-            Map<String, Object> map = new HashMap<String, Object>();
+            Map<String, Object> map = new HashMap();
             map.put("teachers", teachers);
             map.put("students", students);
             map.put("competitions", competitions);
@@ -210,13 +210,13 @@ public String addStudent( ModelMap modelMap) {
     @PostMapping(value = "/studentAdd")
     public String StudentAdd(HttpServletRequest request) {
         try {
-            Long userAccount = Long.parseLong( request.getParameter("userAccount"));
+            Long userCount = Long.parseLong( request.getParameter("userAccount"));
             //Long studentId = Long.parseLong(request.getParameter("studentId"));
             String name=request.getParameter("name");
             String img = request.getParameter("img");
-            if (userAccount != null && name != null) {
+            if (userCount != null && name != null) {
                 Student student = new Student();
-                student.setUserCount(userAccount);
+                student.setUserCount(userCount);
                 student.setName(name);
                 student.setImg(img);
                 studentService.save(student);

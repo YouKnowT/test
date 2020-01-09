@@ -13,10 +13,17 @@ public interface CompetitionService {
 //    List<Competition> findByNum(long num);
     List<Competition> findAll();
     Competition save(Competition competition);
-//    Competition saveCompetition(Competition competition);
+    Competition saveCompetition(Competition competition);
 //    void updateCompetition(Competition competition);
     void deleteById(long id);
 
+
     void updateCompetition(Competition competition);
+
+    //List<Competition> findByName(long name);
+
+    List<Competition> findByStudent_name(String name);
+
+    List<Competition> findByStudent_count(long user_account);
 //    Competition addCompetition(Competition competition);
 }

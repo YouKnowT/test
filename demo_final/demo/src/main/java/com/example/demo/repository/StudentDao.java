@@ -11,8 +11,8 @@ public interface StudentDao extends JpaRepository<Student,Long> {
     @Query(value = "SELECT s FROM Student s WHERE s.id=?1")
     Student findById(long id);
 
-    @Query(value = "SELECT s FROM Student s WHERE s.userAccount=?1")
-    Student findByUserAccount(long userAccount);
+    @Query(value = "SELECT s FROM Student s WHERE s.userCount=?1")
+    Student findByUserAccount(long userCount);
 //    @Query(value = "SELECT s FROM Student s WHERE s.name=?1")
 //    Student findByName(String name);
 //    @Query(value = "UPDATE Student s SET s.user_count=?1,s.name=?2,s.password=?3")

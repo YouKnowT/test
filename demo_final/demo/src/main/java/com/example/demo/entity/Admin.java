@@ -13,6 +13,7 @@ public class Admin {
     @Column(name = "id")
     private long id;
 
+
     @Column(name = "password")
     private String password;
 

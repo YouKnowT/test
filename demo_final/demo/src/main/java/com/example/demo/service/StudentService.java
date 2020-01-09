@@ -7,7 +7,7 @@ import java.util.List;
 public interface StudentService {
 //    Student findById(long id);
 //    Student findByName(String name);
-    Student findByUserAccount(long userAccount);
+    Student findByUserAccount(long userCount);
     Student registerStudent(Student student);
     List<Student> findAll();
     Student findById(long id);

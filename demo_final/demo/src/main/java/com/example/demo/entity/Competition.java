@@ -42,6 +42,12 @@ public class Competition implements Serializable {
     @Column(name = "guidance_certificate")
     private String guidaceCertificate;
 
+    @Column(name = "student_name")
+    private String student_name;
+
+    @Column(name = "student_count")
+    private long student_count;
+
     // 比赛照片
     @Column(name = "imgs")
     private String imgs;
@@ -144,6 +150,22 @@ public class Competition implements Serializable {
 
     public void setStartTime(Date startTime) {
         this.startTime = startTime;
+    }
+
+    public String getStudent_name() {
+        return student_name;
+    }
+
+    public void setStudent_name(String student_name) {
+        this.student_name = student_name;
+    }
+
+    public long getStudent_count() {
+        return student_count;
+    }
+
+    public void setStudent_count(long student_count) {
+        this.student_count = student_count;
     }
 
 //    public double getGzl() {

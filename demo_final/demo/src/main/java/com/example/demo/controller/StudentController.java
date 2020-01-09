@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.Map;
 
@@ -23,21 +24,33 @@ public class StudentController{
     private StudentService studentService;
     @Autowired
     private CompetitionService competitionService;
+//    @RequestMapping(value = "toIndex",method = RequestMethod.GET)
+//    @ResponseBody
+////    public ModelAndView toIndex(@RequestParam("name") long name)
+//    public ModelAndView passParam(Map <String, Object> map, @RequestParam("name") long name){
+
+
     @RequestMapping(value = "toIndex",method = RequestMethod.GET)
     @ResponseBody
 //    public ModelAndView toIndex(@RequestParam("name") long name)
-    public ModelAndView passParam(Map <String, Object> map, @RequestParam("name") long name){
+    public ModelAndView passParam(Map <String, Object> map, @RequestParam("userCount") long userCount){
 
 
-//        List<Competition> competitions = competitionService.findByNum(name);
-//
-//        map.put("competitions",competitions);
+        List<Competition> competitions = competitionService.findByStudent_count(userCount);
+
+        map.put("competitions",competitions);
 
         ModelAndView mav = new ModelAndView("info_show");
 
         mav.addObject(map);
         return mav;
     }
+
+//        ModelAndView mav = new ModelAndView("info_show");
+//
+//        mav.addObject(map);
+//        return mav;
+
 
     @RequestMapping("findById")
     @ResponseBody

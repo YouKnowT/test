@@ -55,6 +55,11 @@ public class CompetitionServiceImp implements CompetitionService {
     }
 
     @Override
+    public Competition saveCompetition(Competition competition) {
+        return competitionDao.save(competition);
+    }
+
+    @Override
     public void deleteById(long id) {
         competitionDao.deleteById(id);
     }
@@ -62,6 +67,16 @@ public class CompetitionServiceImp implements CompetitionService {
     @Override
     public void updateCompetition(Competition competition) {
         competitionDao.saveAndFlush(competition);
+    }
+
+    @Override
+    public List<Competition> findByStudent_name(String student_name) {
+        return competitionDao.findByStudent_name(student_name);
+    }
+
+    @Override
+    public List<Competition> findByStudent_count(long student_count) {
+        return competitionDao.findByStudent_count(student_count);
     }
 //    public Competition saveCompetition(Competition competitionItem){
 //        return competitionDao.save(competitionItem);

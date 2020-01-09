@@ -26,8 +26,8 @@ public class StudentServiceImp implements StudentService {
 //    }
 
     @Override
-    public Student findByUserAccount(long userAccount) {
-        return null;
+    public Student findByUserAccount(long userCount) {
+        return studentDao.findByUserAccount(userCount);
     }
 
     @Override
