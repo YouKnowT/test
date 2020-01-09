@@ -33,7 +33,7 @@ public class StudentController{
     @RequestMapping(value = "toIndex",method = RequestMethod.GET)
     @ResponseBody
 //    public ModelAndView toIndex(@RequestParam("name") long name)
-    public ModelAndView passParam(Map <String, Object> map, @RequestParam("userCount") long userCount){
+    public ModelAndView passParam(Map <String, Object> map, @RequestParam("name") long userCount){
 
 
         List<Competition> competitions = competitionService.findByStudent_count(userCount);

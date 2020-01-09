@@ -36,12 +36,12 @@ public class ExcelController {
     public void export( HttpServletResponse response) throws Exception {
         //获取数据
         List<Competition> list = competitionServiceImp.findAll();
-        List<Category> list1 = categoryServiceImpl.findAll();
+        //List<Category> list1 = categoryServiceImpl.findAll();
 
-        for(Category ca : list1){
-            double a = ca.getCardinalNumber() * 10;
-            ca.setGzl(ca.getBase() * a);
-        }
+//        for(Category ca : list1){
+//            double a = ca.getCardinalNumber() * 10;
+//            ca.setGzl(ca.getBase() * a);
+//        }
 
         // excel标题
         String[] title = {"ID", "比赛名称", "比赛类型", "系数","基数", "工作量"};
@@ -53,14 +53,14 @@ public class ExcelController {
 
         for (int i = 0; i < list.size(); i++) {
             Competition obj = list.get(i);
-            Category cat = list1.get(i);
+            //Category cat = list1.get(i);
 
             temp[i][0] = String.valueOf(obj.getId());
             temp[i][1] = obj.getName();
             temp[i][2] = obj.getCategory();
-            temp[i][3] = String.valueOf(cat.getCardinalNumber());
-            temp[i][4] = String.valueOf(cat.getBase());
-            temp[i][5] = String.valueOf(cat.getGzl());
+//            temp[i][3] = String.valueOf(cat.getCardinalNumber());
+//            temp[i][4] = String.valueOf(cat.getBase());
+//            temp[i][5] = String.valueOf(cat.getGzl());
         }
         //创建HSSFWorkbook
         HSSFWorkbook wb = ExcelUtil.getHSSFWorkbook(sheetName, title, temp, null);

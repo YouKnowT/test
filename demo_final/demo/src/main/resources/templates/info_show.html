@@ -6,7 +6,6 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-
 <title>- 基础表格</title>
 <meta name="keywords" content="">
 <meta name="description" content="">
@@ -34,14 +33,19 @@
 					<div class="ibox-title">
 						<h5>查看比赛信息</h5>
 
+						</br>
+
+						<a href="/homework/user/toLogin" style="position: inherit; float: right"><button>退出</button></a>
 					</div>
+
+
 					<div class="ibox-content">
 
 						<div class="table-responsive">
 							<table class="table table-striped">
 								<thead>
 									<tr>
-										<th>所属班级</th>
+										<!--<th>所属班级</th>-->
 										<th>学生姓名</th>
 										<th>学号</th> 
 										<th>指导教师</th> 
@@ -57,9 +61,8 @@
 								<tbody>
 
 										<tr th:each="mapS:${competitions}">
-										<td th:text="${mapS.student_class}"></td>
+										<!--<td th:text="${mapS.student_class}"></td>-->
 										<td th:text="${mapS.student_name}"></td>
-
 										<td th:text="${mapS.getStudent_count()}"></td>
 										<td th:text="${mapS.student_guide}"></td>
 										<td th:text="${mapS.competition_name}"></td>

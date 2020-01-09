@@ -37,7 +37,7 @@ public class Student implements Serializable {
                 ", password='" + password + '\'' +
                 ", name='" + name + '\'' +
                 ", img='" + img + '\'' +
-                "is_audit"+audit+
+                "is_audit="+audit+
                 '}';
     }
 
